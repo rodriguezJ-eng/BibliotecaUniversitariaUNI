@@ -29,198 +29,338 @@ namespace BibliotecaUniversitaria.Forms
 
         private void InitializeComponent()
         {
-            this.grbDatosUsuario = new GroupBox();
-            this.lblCedula = new Label();
-            this.txtCedula = new TextBox();
-            this.lblNombres = new Label();
-            this.txtNombres = new TextBox();
-            this.lblApellidos = new Label();
-            this.txtApellidos = new TextBox();
-            this.lblTelefono = new Label();
-            this.txtTelefono = new TextBox();
-            this.lblCorreo = new Label();
-            this.txtCorreo = new TextBox();
-            this.lblCarrera = new Label();
-            this.txtCarrera = new TextBox();
-            this.lblTipo = new Label();
-            this.txtTipo = new TextBox();
-
-            this.btnNuevo = new Button();
-            this.btnGuardar = new Button();
-            this.btnEditar = new Button();
-            this.btnEliminar = new Button();
-            this.btnCerrar = new Button();
-
-            this.grbUsuariosRegistrados = new GroupBox();
-            this.dgvUsuarios = new DataGridView();
-
-            this.grbDatosUsuario.SuspendLayout();
-            this.grbUsuariosRegistrados.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
-            this.SuspendLayout();
-
-            // --- grbDatosUsuario ---
-            this.lblCedula.Name = "lblCedula";
-            this.lblCedula.Text = "Cédula";
-            this.lblCedula.Location = new Point(30, 40);
-            this.lblCedula.AutoSize = true;
-
-            this.txtCedula.Name = "txtCedula";
-            this.txtCedula.Location = new Point(130, 37);
-            this.txtCedula.Size = new Size(280, 23);
-
-            this.lblNombres.Name = "lblNombres";
-            this.lblNombres.Text = "Nombres";
-            this.lblNombres.Location = new Point(30, 80);
-            this.lblNombres.AutoSize = true;
-
-            this.txtNombres.Name = "txtNombres";
-            this.txtNombres.Location = new Point(130, 77);
-            this.txtNombres.Size = new Size(280, 23);
-
-            this.lblApellidos.Name = "lblApellidos";
-            this.lblApellidos.Text = "Apellidos";
-            this.lblApellidos.Location = new Point(30, 120);
-            this.lblApellidos.AutoSize = true;
-
-            this.txtApellidos.Name = "txtApellidos";
-            this.txtApellidos.Location = new Point(130, 117);
-            this.txtApellidos.Size = new Size(280, 23);
-
-            this.lblTelefono.Name = "lblTelefono";
-            this.lblTelefono.Text = "Telefono";
-            this.lblTelefono.Location = new Point(30, 160);
-            this.lblTelefono.AutoSize = true;
-
-            this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Location = new Point(130, 157);
-            this.txtTelefono.Size = new Size(280, 23);
-
-            this.lblCorreo.Name = "lblCorreo";
-            this.lblCorreo.Text = "Correo";
-            this.lblCorreo.Location = new Point(460, 40);
-            this.lblCorreo.AutoSize = true;
-
-            this.txtCorreo.Name = "txtCorreo";
-            this.txtCorreo.Location = new Point(560, 37);
-            this.txtCorreo.Size = new Size(280, 23);
-
-            this.lblCarrera.Name = "lblCarrera";
-            this.lblCarrera.Text = "Carrera";
-            this.lblCarrera.Location = new Point(460, 80);
-            this.lblCarrera.AutoSize = true;
-
-            this.txtCarrera.Name = "txtCarrera";
-            this.txtCarrera.Location = new Point(560, 77);
-            this.txtCarrera.Size = new Size(280, 23);
-
-            this.lblTipo.Name = "lblTipo";
-            this.lblTipo.Text = "Tipo";
-            this.lblTipo.Location = new Point(460, 120);
-            this.lblTipo.AutoSize = true;
-
-            this.txtTipo.Name = "txtTipo";
-            this.txtTipo.Location = new Point(560, 117);
-            this.txtTipo.Size = new Size(280, 23);
-
-            this.grbDatosUsuario.Name = "grbDatosUsuario";
-            this.grbDatosUsuario.Text = "Datos de usuario";
-            this.grbDatosUsuario.Font = Estilos.FuenteTitulo;
-            this.grbDatosUsuario.Location = new Point(20, 15);
-            this.grbDatosUsuario.Size = new Size(880, 210);
-            this.grbDatosUsuario.Controls.Add(this.lblCedula);
-            this.grbDatosUsuario.Controls.Add(this.txtCedula);
-            this.grbDatosUsuario.Controls.Add(this.lblNombres);
-            this.grbDatosUsuario.Controls.Add(this.txtNombres);
-            this.grbDatosUsuario.Controls.Add(this.lblApellidos);
-            this.grbDatosUsuario.Controls.Add(this.txtApellidos);
-            this.grbDatosUsuario.Controls.Add(this.lblTelefono);
-            this.grbDatosUsuario.Controls.Add(this.txtTelefono);
-            this.grbDatosUsuario.Controls.Add(this.lblCorreo);
-            this.grbDatosUsuario.Controls.Add(this.txtCorreo);
-            this.grbDatosUsuario.Controls.Add(this.lblCarrera);
-            this.grbDatosUsuario.Controls.Add(this.txtCarrera);
-            this.grbDatosUsuario.Controls.Add(this.lblTipo);
-            this.grbDatosUsuario.Controls.Add(this.txtTipo);
-
-            // --- Botones CRUD ---
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Text = "Nuevo";
-            this.btnNuevo.Location = new Point(20, 240);
-            this.btnNuevo.Size = new Size(95, 32);
-            Estilos.AplicarBotonAccion(this.btnNuevo);
-            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
-
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.Location = new Point(125, 240);
-            this.btnGuardar.Size = new Size(95, 32);
-            Estilos.AplicarBotonAccion(this.btnGuardar);
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.Location = new Point(230, 240);
-            this.btnEditar.Size = new Size(95, 32);
-            Estilos.AplicarBotonAccion(this.btnEditar);
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.Location = new Point(335, 240);
-            this.btnEliminar.Size = new Size(95, 32);
-            Estilos.AplicarBotonAccion(this.btnEliminar);
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Text = "Cerrar";
-            this.btnCerrar.Location = new Point(440, 240);
-            this.btnCerrar.Size = new Size(95, 32);
-            Estilos.AplicarBotonAccion(this.btnCerrar);
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
-
-            // --- grbUsuariosRegistrados ---
-            this.dgvUsuarios.Name = "dgvUsuarios";
-            this.dgvUsuarios.Location = new Point(20, 30);
-            this.dgvUsuarios.Size = new Size(840, 210);
-            this.dgvUsuarios.AllowUserToAddRows = false;
-            this.dgvUsuarios.Columns.Add("Cedula", "Cédula");
-            this.dgvUsuarios.Columns.Add("Nombres", "Nombres");
-            this.dgvUsuarios.Columns.Add("Apellidos", "Apellidos");
-            this.dgvUsuarios.Columns.Add("Telefono", "Telefono");
-            this.dgvUsuarios.Columns.Add("Correo", "Correo");
-            this.dgvUsuarios.Columns.Add("Carrera", "Carrera");
-            this.dgvUsuarios.Columns.Add("Tipo", "Tipo");
-
-            this.grbUsuariosRegistrados.Name = "grbUsuariosRegistrados";
-            this.grbUsuariosRegistrados.Text = "Usuarios registrados";
-            this.grbUsuariosRegistrados.Font = Estilos.FuenteTitulo;
-            this.grbUsuariosRegistrados.Location = new Point(20, 285);
-            this.grbUsuariosRegistrados.Size = new Size(880, 260);
-            this.grbUsuariosRegistrados.Controls.Add(this.dgvUsuarios);
-
-            // --- frmRegistroUsuario ---
-            this.AutoScaleDimensions = new SizeF(7F, 15F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(920, 570);
-            this.BackColor = Estilos.FondoFormulario;
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.Name = "frmRegistroUsuario";
-            this.Text = "Registro de usuarios";
-
-            this.Controls.Add(this.grbDatosUsuario);
-            this.Controls.Add(this.btnNuevo);
-            this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.btnEditar);
-            this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnCerrar);
-            this.Controls.Add(this.grbUsuariosRegistrados);
-
-            this.grbDatosUsuario.ResumeLayout(false);
-            this.grbDatosUsuario.PerformLayout();
-            this.grbUsuariosRegistrados.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
-            this.ResumeLayout(false);
+            grbDatosUsuario = new GroupBox();
+            lblCedula = new Label();
+            txtCedula = new TextBox();
+            lblNombres = new Label();
+            txtNombres = new TextBox();
+            lblApellidos = new Label();
+            txtApellidos = new TextBox();
+            lblTelefono = new Label();
+            txtTelefono = new TextBox();
+            lblCorreo = new Label();
+            txtCorreo = new TextBox();
+            lblCarrera = new Label();
+            txtCarrera = new TextBox();
+            lblTipo = new Label();
+            txtTipo = new TextBox();
+            btnNuevo = new Button();
+            btnGuardar = new Button();
+            btnEditar = new Button();
+            btnEliminar = new Button();
+            btnCerrar = new Button();
+            grbUsuariosRegistrados = new GroupBox();
+            dgvUsuarios = new DataGridView();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
+            grbDatosUsuario.SuspendLayout();
+            grbUsuariosRegistrados.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
+            SuspendLayout();
+            // 
+            // grbDatosUsuario
+            // 
+            grbDatosUsuario.Controls.Add(lblCedula);
+            grbDatosUsuario.Controls.Add(txtCedula);
+            grbDatosUsuario.Controls.Add(lblNombres);
+            grbDatosUsuario.Controls.Add(txtNombres);
+            grbDatosUsuario.Controls.Add(lblApellidos);
+            grbDatosUsuario.Controls.Add(txtApellidos);
+            grbDatosUsuario.Controls.Add(lblTelefono);
+            grbDatosUsuario.Controls.Add(txtTelefono);
+            grbDatosUsuario.Controls.Add(lblCorreo);
+            grbDatosUsuario.Controls.Add(txtCorreo);
+            grbDatosUsuario.Controls.Add(lblCarrera);
+            grbDatosUsuario.Controls.Add(txtCarrera);
+            grbDatosUsuario.Controls.Add(lblTipo);
+            grbDatosUsuario.Controls.Add(txtTipo);
+            grbDatosUsuario.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            grbDatosUsuario.Location = new Point(23, 20);
+            grbDatosUsuario.Margin = new Padding(3, 4, 3, 4);
+            grbDatosUsuario.Name = "grbDatosUsuario";
+            grbDatosUsuario.Padding = new Padding(3, 4, 3, 4);
+            grbDatosUsuario.Size = new Size(1006, 280);
+            grbDatosUsuario.TabIndex = 0;
+            grbDatosUsuario.TabStop = false;
+            grbDatosUsuario.Text = "Datos de usuario";
+            // 
+            // lblCedula
+            // 
+            lblCedula.AutoSize = true;
+            lblCedula.Location = new Point(6, 52);
+            lblCedula.Name = "lblCedula";
+            lblCedula.Size = new Size(119, 23);
+            lblCedula.TabIndex = 0;
+            lblCedula.Text = "Identificación";
+            // 
+            // txtCedula
+            // 
+            txtCedula.Location = new Point(149, 49);
+            txtCedula.Margin = new Padding(3, 4, 3, 4);
+            txtCedula.Name = "txtCedula";
+            txtCedula.Size = new Size(319, 30);
+            txtCedula.TabIndex = 1;
+            // 
+            // lblNombres
+            // 
+            lblNombres.AutoSize = true;
+            lblNombres.Location = new Point(34, 107);
+            lblNombres.Name = "lblNombres";
+            lblNombres.Size = new Size(83, 23);
+            lblNombres.TabIndex = 2;
+            lblNombres.Text = "Nombres";
+            // 
+            // txtNombres
+            // 
+            txtNombres.Location = new Point(149, 103);
+            txtNombres.Margin = new Padding(3, 4, 3, 4);
+            txtNombres.Name = "txtNombres";
+            txtNombres.Size = new Size(319, 30);
+            txtNombres.TabIndex = 3;
+            // 
+            // lblApellidos
+            // 
+            lblApellidos.AutoSize = true;
+            lblApellidos.Location = new Point(34, 160);
+            lblApellidos.Name = "lblApellidos";
+            lblApellidos.Size = new Size(85, 23);
+            lblApellidos.TabIndex = 4;
+            lblApellidos.Text = "Apellidos";
+            // 
+            // txtApellidos
+            // 
+            txtApellidos.Location = new Point(149, 156);
+            txtApellidos.Margin = new Padding(3, 4, 3, 4);
+            txtApellidos.Name = "txtApellidos";
+            txtApellidos.Size = new Size(319, 30);
+            txtApellidos.TabIndex = 5;
+            // 
+            // lblTelefono
+            // 
+            lblTelefono.AutoSize = true;
+            lblTelefono.Location = new Point(34, 213);
+            lblTelefono.Name = "lblTelefono";
+            lblTelefono.Size = new Size(78, 23);
+            lblTelefono.TabIndex = 6;
+            lblTelefono.Text = "Telefono";
+            // 
+            // txtTelefono
+            // 
+            txtTelefono.Location = new Point(149, 209);
+            txtTelefono.Margin = new Padding(3, 4, 3, 4);
+            txtTelefono.Name = "txtTelefono";
+            txtTelefono.Size = new Size(319, 30);
+            txtTelefono.TabIndex = 7;
+            // 
+            // lblCorreo
+            // 
+            lblCorreo.AutoSize = true;
+            lblCorreo.Location = new Point(526, 53);
+            lblCorreo.Name = "lblCorreo";
+            lblCorreo.Size = new Size(64, 23);
+            lblCorreo.TabIndex = 8;
+            lblCorreo.Text = "Correo";
+            // 
+            // txtCorreo
+            // 
+            txtCorreo.Location = new Point(640, 49);
+            txtCorreo.Margin = new Padding(3, 4, 3, 4);
+            txtCorreo.Name = "txtCorreo";
+            txtCorreo.Size = new Size(319, 30);
+            txtCorreo.TabIndex = 9;
+            // 
+            // lblCarrera
+            // 
+            lblCarrera.AutoSize = true;
+            lblCarrera.Location = new Point(526, 107);
+            lblCarrera.Name = "lblCarrera";
+            lblCarrera.Size = new Size(69, 23);
+            lblCarrera.TabIndex = 10;
+            lblCarrera.Text = "Carrera";
+            // 
+            // txtCarrera
+            // 
+            txtCarrera.Location = new Point(640, 103);
+            txtCarrera.Margin = new Padding(3, 4, 3, 4);
+            txtCarrera.Name = "txtCarrera";
+            txtCarrera.Size = new Size(319, 30);
+            txtCarrera.TabIndex = 11;
+            // 
+            // lblTipo
+            // 
+            lblTipo.AutoSize = true;
+            lblTipo.Location = new Point(526, 160);
+            lblTipo.Name = "lblTipo";
+            lblTipo.Size = new Size(46, 23);
+            lblTipo.TabIndex = 12;
+            lblTipo.Text = "Tipo";
+            // 
+            // txtTipo
+            // 
+            txtTipo.Location = new Point(640, 156);
+            txtTipo.Margin = new Padding(3, 4, 3, 4);
+            txtTipo.Name = "txtTipo";
+            txtTipo.Size = new Size(319, 30);
+            txtTipo.TabIndex = 13;
+            // 
+            // btnNuevo
+            // 
+            btnNuevo.Location = new Point(23, 320);
+            btnNuevo.Margin = new Padding(3, 4, 3, 4);
+            btnNuevo.Name = "btnNuevo";
+            btnNuevo.Size = new Size(109, 43);
+            btnNuevo.TabIndex = 1;
+            btnNuevo.Text = "Nuevo";
+            btnNuevo.Click += btnNuevo_Click;
+            // 
+            // btnGuardar
+            // 
+            btnGuardar.Location = new Point(143, 320);
+            btnGuardar.Margin = new Padding(3, 4, 3, 4);
+            btnGuardar.Name = "btnGuardar";
+            btnGuardar.Size = new Size(109, 43);
+            btnGuardar.TabIndex = 2;
+            btnGuardar.Text = "Guardar";
+            btnGuardar.Click += btnGuardar_Click;
+            // 
+            // btnEditar
+            // 
+            btnEditar.Location = new Point(263, 320);
+            btnEditar.Margin = new Padding(3, 4, 3, 4);
+            btnEditar.Name = "btnEditar";
+            btnEditar.Size = new Size(109, 43);
+            btnEditar.TabIndex = 3;
+            btnEditar.Text = "Editar";
+            btnEditar.Click += btnEditar_Click;
+            // 
+            // btnEliminar
+            // 
+            btnEliminar.Location = new Point(383, 320);
+            btnEliminar.Margin = new Padding(3, 4, 3, 4);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(109, 43);
+            btnEliminar.TabIndex = 4;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.Click += btnEliminar_Click;
+            // 
+            // btnCerrar
+            // 
+            btnCerrar.Location = new Point(503, 320);
+            btnCerrar.Margin = new Padding(3, 4, 3, 4);
+            btnCerrar.Name = "btnCerrar";
+            btnCerrar.Size = new Size(109, 43);
+            btnCerrar.TabIndex = 5;
+            btnCerrar.Text = "Cerrar";
+            btnCerrar.Click += btnCerrar_Click;
+            // 
+            // grbUsuariosRegistrados
+            // 
+            grbUsuariosRegistrados.Controls.Add(dgvUsuarios);
+            grbUsuariosRegistrados.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            grbUsuariosRegistrados.Location = new Point(23, 380);
+            grbUsuariosRegistrados.Margin = new Padding(3, 4, 3, 4);
+            grbUsuariosRegistrados.Name = "grbUsuariosRegistrados";
+            grbUsuariosRegistrados.Padding = new Padding(3, 4, 3, 4);
+            grbUsuariosRegistrados.Size = new Size(1006, 347);
+            grbUsuariosRegistrados.TabIndex = 6;
+            grbUsuariosRegistrados.TabStop = false;
+            grbUsuariosRegistrados.Text = "Usuarios registrados";
+            // 
+            // dgvUsuarios
+            // 
+            dgvUsuarios.AllowUserToAddRows = false;
+            dgvUsuarios.ColumnHeadersHeight = 29;
+            dgvUsuarios.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7 });
+            dgvUsuarios.Location = new Point(23, 40);
+            dgvUsuarios.Margin = new Padding(3, 4, 3, 4);
+            dgvUsuarios.Name = "dgvUsuarios";
+            dgvUsuarios.RowHeadersWidth = 51;
+            dgvUsuarios.Size = new Size(960, 280);
+            dgvUsuarios.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.HeaderText = "Cédula";
+            dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.HeaderText = "Nombres";
+            dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.HeaderText = "Apellidos";
+            dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewTextBoxColumn4.HeaderText = "Telefono";
+            dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewTextBoxColumn5.HeaderText = "Correo";
+            dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            dataGridViewTextBoxColumn5.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            dataGridViewTextBoxColumn6.HeaderText = "Carrera";
+            dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            dataGridViewTextBoxColumn6.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            dataGridViewTextBoxColumn7.HeaderText = "Tipo";
+            dataGridViewTextBoxColumn7.MinimumWidth = 6;
+            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            dataGridViewTextBoxColumn7.Width = 125;
+            // 
+            // frmRegistroUsuario
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(213, 234, 248);
+            ClientSize = new Size(1051, 760);
+            Controls.Add(grbDatosUsuario);
+            Controls.Add(btnNuevo);
+            Controls.Add(btnGuardar);
+            Controls.Add(btnEditar);
+            Controls.Add(btnEliminar);
+            Controls.Add(btnCerrar);
+            Controls.Add(grbUsuariosRegistrados);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "frmRegistroUsuario";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Registro de usuarios";
+            grbDatosUsuario.ResumeLayout(false);
+            grbDatosUsuario.PerformLayout();
+            grbUsuariosRegistrados.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvUsuarios).EndInit();
+            ResumeLayout(false);
         }
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
     }
 }

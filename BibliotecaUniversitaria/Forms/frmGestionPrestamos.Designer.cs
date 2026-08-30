@@ -18,7 +18,6 @@ namespace BibliotecaUniversitaria.Forms
 
         private GroupBox grbRegistroPrestamos;
         private Label lblUsuarios, lblEjemplar, lblFechaPrestamo, lblDiasCredito, lblFechaDevolucion;
-        private TextBox txtUsuarios, txtEjemplar, txtFechaPrestamo, txtDiasCredito, txtFechaDevolucion;
         private Button btnRegistroPrestamo, btnDevolucion;
 
         private GroupBox grbPrestamo;
@@ -29,17 +28,18 @@ namespace BibliotecaUniversitaria.Forms
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGestionPrestamos));
             grbRegistroPrestamos = new GroupBox();
+            textBox2 = new TextBox();
+            textBox1 = new TextBox();
+            dateTimePicker2 = new DateTimePicker();
+            button1 = new Button();
+            dateTimePicker1 = new DateTimePicker();
             lblUsuarios = new Label();
-            txtUsuarios = new TextBox();
             lblEjemplar = new Label();
-            txtEjemplar = new TextBox();
             lblFechaPrestamo = new Label();
-            txtFechaPrestamo = new TextBox();
             lblDiasCredito = new Label();
-            txtDiasCredito = new TextBox();
             lblFechaDevolucion = new Label();
-            txtFechaDevolucion = new TextBox();
             btnRegistroPrestamo = new Button();
             btnDevolucion = new Button();
             grbPrestamo = new GroupBox();
@@ -47,11 +47,13 @@ namespace BibliotecaUniversitaria.Forms
             cmbPrestamos = new ComboBox();
             btnBuscar = new Button();
             dgvPrestamos = new DataGridView();
+            IDPrestamo = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            textBox3 = new TextBox();
             grbRegistroPrestamos.SuspendLayout();
             grbPrestamo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPrestamos).BeginInit();
@@ -59,18 +61,18 @@ namespace BibliotecaUniversitaria.Forms
             // 
             // grbRegistroPrestamos
             // 
+            grbRegistroPrestamos.Controls.Add(textBox3);
+            grbRegistroPrestamos.Controls.Add(textBox2);
+            grbRegistroPrestamos.Controls.Add(textBox1);
+            grbRegistroPrestamos.Controls.Add(dateTimePicker2);
+            grbRegistroPrestamos.Controls.Add(button1);
+            grbRegistroPrestamos.Controls.Add(dateTimePicker1);
             grbRegistroPrestamos.Controls.Add(lblUsuarios);
-            grbRegistroPrestamos.Controls.Add(txtUsuarios);
             grbRegistroPrestamos.Controls.Add(lblEjemplar);
-            grbRegistroPrestamos.Controls.Add(txtEjemplar);
             grbRegistroPrestamos.Controls.Add(lblFechaPrestamo);
-            grbRegistroPrestamos.Controls.Add(txtFechaPrestamo);
             grbRegistroPrestamos.Controls.Add(lblDiasCredito);
-            grbRegistroPrestamos.Controls.Add(txtDiasCredito);
             grbRegistroPrestamos.Controls.Add(lblFechaDevolucion);
-            grbRegistroPrestamos.Controls.Add(txtFechaDevolucion);
             grbRegistroPrestamos.Controls.Add(btnRegistroPrestamo);
-            grbRegistroPrestamos.Controls.Add(btnDevolucion);
             grbRegistroPrestamos.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             grbRegistroPrestamos.Location = new Point(23, 20);
             grbRegistroPrestamos.Margin = new Padding(3, 4, 3, 4);
@@ -81,90 +83,90 @@ namespace BibliotecaUniversitaria.Forms
             grbRegistroPrestamos.TabStop = false;
             grbRegistroPrestamos.Text = "Registrar Prestamos";
             // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(127, 113);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(238, 30);
+            textBox2.TabIndex = 15;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(111, 39);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(254, 30);
+            textBox1.TabIndex = 14;
+            // 
+            // dateTimePicker2
+            // 
+            dateTimePicker2.Enabled = false;
+            dateTimePicker2.Location = new Point(601, 167);
+            dateTimePicker2.Name = "dateTimePicker2";
+            dateTimePicker2.Size = new Size(250, 30);
+            dateTimePicker2.TabIndex = 13;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.FromArgb(0, 192, 192);
+            button1.Image = (Image)resources.GetObject("button1.Image");
+            button1.Location = new Point(377, 33);
+            button1.Name = "button1";
+            button1.Size = new Size(48, 41);
+            button1.TabIndex = 12;
+            button1.UseVisualStyleBackColor = false;
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(582, 39);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(250, 30);
+            dateTimePicker1.TabIndex = 4;
+            // 
             // lblUsuarios
             // 
             lblUsuarios.AutoSize = true;
-            lblUsuarios.Location = new Point(34, 47);
+            lblUsuarios.Location = new Point(34, 46);
             lblUsuarios.Name = "lblUsuarios";
-            lblUsuarios.Size = new Size(82, 23);
+            lblUsuarios.Size = new Size(71, 23);
             lblUsuarios.TabIndex = 0;
-            lblUsuarios.Text = "Usuarios:";
-            // 
-            // txtUsuarios
-            // 
-            txtUsuarios.Location = new Point(137, 43);
-            txtUsuarios.Margin = new Padding(3, 4, 3, 4);
-            txtUsuarios.Name = "txtUsuarios";
-            txtUsuarios.Size = new Size(297, 30);
-            txtUsuarios.TabIndex = 1;
+            lblUsuarios.Text = "Lector: ";
+            lblUsuarios.Click += lblUsuarios_Click;
             // 
             // lblEjemplar
             // 
             lblEjemplar.AutoSize = true;
-            lblEjemplar.Location = new Point(491, 47);
+            lblEjemplar.Location = new Point(34, 120);
             lblEjemplar.Name = "lblEjemplar";
             lblEjemplar.Size = new Size(87, 23);
             lblEjemplar.TabIndex = 2;
             lblEjemplar.Text = "Ejemplar:";
             // 
-            // txtEjemplar
-            // 
-            txtEjemplar.Location = new Point(594, 43);
-            txtEjemplar.Margin = new Padding(3, 4, 3, 4);
-            txtEjemplar.Name = "txtEjemplar";
-            txtEjemplar.Size = new Size(251, 30);
-            txtEjemplar.TabIndex = 3;
-            // 
             // lblFechaPrestamo
             // 
             lblFechaPrestamo.AutoSize = true;
-            lblFechaPrestamo.Location = new Point(34, 107);
+            lblFechaPrestamo.Location = new Point(491, 27);
             lblFechaPrestamo.Name = "lblFechaPrestamo";
-            lblFechaPrestamo.Size = new Size(85, 46);
+            lblFechaPrestamo.Size = new Size(90, 46);
             lblFechaPrestamo.TabIndex = 4;
-            lblFechaPrestamo.Text = "Fecha\r\nPrestamo";
-            // 
-            // txtFechaPrestamo
-            // 
-            txtFechaPrestamo.Location = new Point(34, 160);
-            txtFechaPrestamo.Margin = new Padding(3, 4, 3, 4);
-            txtFechaPrestamo.Name = "txtFechaPrestamo";
-            txtFechaPrestamo.Size = new Size(171, 30);
-            txtFechaPrestamo.TabIndex = 5;
+            lblFechaPrestamo.Text = "Fecha\r\nPrestamo:";
             // 
             // lblDiasCredito
             // 
             lblDiasCredito.AutoSize = true;
-            lblDiasCredito.Location = new Point(224, 132);
+            lblDiasCredito.Location = new Point(491, 101);
             lblDiasCredito.Name = "lblDiasCredito";
             lblDiasCredito.Size = new Size(114, 23);
             lblDiasCredito.TabIndex = 6;
             lblDiasCredito.Text = "Dias Credito:";
             // 
-            // txtDiasCredito
-            // 
-            txtDiasCredito.Location = new Point(354, 129);
-            txtDiasCredito.Margin = new Padding(3, 4, 3, 4);
-            txtDiasCredito.Name = "txtDiasCredito";
-            txtDiasCredito.Size = new Size(114, 30);
-            txtDiasCredito.TabIndex = 7;
-            // 
             // lblFechaDevolucion
             // 
             lblFechaDevolucion.AutoSize = true;
-            lblFechaDevolucion.Location = new Point(491, 107);
+            lblFechaDevolucion.Location = new Point(491, 151);
             lblFechaDevolucion.Name = "lblFechaDevolucion";
             lblFechaDevolucion.Size = new Size(104, 46);
             lblFechaDevolucion.TabIndex = 8;
             lblFechaDevolucion.Text = "Fecha\r\nDevolucion:";
-            // 
-            // txtFechaDevolucion
-            // 
-            txtFechaDevolucion.Location = new Point(491, 160);
-            txtFechaDevolucion.Margin = new Padding(3, 4, 3, 4);
-            txtFechaDevolucion.Name = "txtFechaDevolucion";
-            txtFechaDevolucion.Size = new Size(194, 30);
-            txtFechaDevolucion.TabIndex = 9;
             // 
             // btnRegistroPrestamo
             // 
@@ -178,7 +180,7 @@ namespace BibliotecaUniversitaria.Forms
             // 
             // btnDevolucion
             // 
-            btnDevolucion.Location = new Point(240, 220);
+            btnDevolucion.Location = new Point(539, 60);
             btnDevolucion.Margin = new Padding(3, 4, 3, 4);
             btnDevolucion.Name = "btnDevolucion";
             btnDevolucion.Size = new Size(217, 45);
@@ -192,6 +194,7 @@ namespace BibliotecaUniversitaria.Forms
             grbPrestamo.Controls.Add(cmbPrestamos);
             grbPrestamo.Controls.Add(btnBuscar);
             grbPrestamo.Controls.Add(dgvPrestamos);
+            grbPrestamo.Controls.Add(btnDevolucion);
             grbPrestamo.Location = new Point(23, 327);
             grbPrestamo.Margin = new Padding(3, 4, 3, 4);
             grbPrestamo.Name = "grbPrestamo";
@@ -206,9 +209,10 @@ namespace BibliotecaUniversitaria.Forms
             lblPrestamos.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblPrestamos.Location = new Point(23, 40);
             lblPrestamos.Name = "lblPrestamos";
-            lblPrestamos.Size = new Size(92, 23);
+            lblPrestamos.Size = new Size(142, 23);
             lblPrestamos.TabIndex = 0;
-            lblPrestamos.Text = "Prestamos";
+            lblPrestamos.Text = "Buscar Préstamo";
+            lblPrestamos.Click += lblPrestamos_Click;
             // 
             // cmbPrestamos
             // 
@@ -233,7 +237,7 @@ namespace BibliotecaUniversitaria.Forms
             // 
             dgvPrestamos.AllowUserToAddRows = false;
             dgvPrestamos.ColumnHeadersHeight = 29;
-            dgvPrestamos.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5 });
+            dgvPrestamos.Columns.AddRange(new DataGridViewColumn[] { IDPrestamo, dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5 });
             dgvPrestamos.Location = new Point(23, 120);
             dgvPrestamos.Margin = new Padding(3, 4, 3, 4);
             dgvPrestamos.Name = "dgvPrestamos";
@@ -241,9 +245,16 @@ namespace BibliotecaUniversitaria.Forms
             dgvPrestamos.Size = new Size(823, 293);
             dgvPrestamos.TabIndex = 3;
             // 
+            // IDPrestamo
+            // 
+            IDPrestamo.HeaderText = "ID Prestamo";
+            IDPrestamo.MinimumWidth = 6;
+            IDPrestamo.Name = "IDPrestamo";
+            IDPrestamo.Width = 125;
+            // 
             // dataGridViewTextBoxColumn1
             // 
-            dataGridViewTextBoxColumn1.HeaderText = "Usuario";
+            dataGridViewTextBoxColumn1.HeaderText = "Lector";
             dataGridViewTextBoxColumn1.MinimumWidth = 6;
             dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             dataGridViewTextBoxColumn1.Width = 125;
@@ -276,6 +287,13 @@ namespace BibliotecaUniversitaria.Forms
             dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             dataGridViewTextBoxColumn5.Width = 125;
             // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(611, 94);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(221, 30);
+            textBox3.TabIndex = 16;
+            // 
             // frmGestionPrestamos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -295,10 +313,17 @@ namespace BibliotecaUniversitaria.Forms
             ((System.ComponentModel.ISupportInitialize)dgvPrestamos).EndInit();
             ResumeLayout(false);
         }
+        private DataGridViewTextBoxColumn IDPrestamo;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private Button button1;
+        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dateTimePicker2;
+        private TextBox textBox2;
+        private TextBox textBox1;
+        private TextBox textBox3;
     }
 }

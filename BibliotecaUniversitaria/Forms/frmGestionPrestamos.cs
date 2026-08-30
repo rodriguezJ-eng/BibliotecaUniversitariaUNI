@@ -26,5 +26,15 @@ namespace BibliotecaUniversitaria.Forms
         {
             // TODO: filtrar dgvPrestamos según cmbPrestamos.
         }
+
+        private void lblUsuarios_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblPrestamos_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

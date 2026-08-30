@@ -19,81 +19,176 @@ namespace BibliotecaUniversitaria.Forms
         private TextBox txtBuscar;
         private Button btnBuscar;
         private DataGridView dgvMultas;
-        private Button btnMarcarPagada, btnEliminar, btnCerrar;
 
         private void InitializeComponent()
         {
-            this.txtBuscar = new TextBox();
-            this.btnBuscar = new Button();
-            this.dgvMultas = new DataGridView();
+            txtBuscar = new TextBox();
+            btnBuscar = new Button();
+            dgvMultas = new DataGridView();
             this.btnMarcarPagada = new Button();
-            this.btnEliminar = new Button();
             this.btnCerrar = new Button();
-
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMultas)).BeginInit();
-            this.SuspendLayout();
-
-            this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Location = new Point(30, 30);
-            this.txtBuscar.Size = new Size(500, 23);
-
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.Location = new Point(600, 28);
-            this.btnBuscar.Size = new Size(100, 26);
-            Estilos.AplicarBotonAccion(this.btnBuscar);
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
-
-            this.dgvMultas.Name = "dgvMultas";
-            this.dgvMultas.Location = new Point(30, 75);
-            this.dgvMultas.Size = new Size(670, 260);
-            this.dgvMultas.AllowUserToAddRows = false;
-            this.dgvMultas.Columns.Add("Prestamo", "Prestamo");
-            this.dgvMultas.Columns.Add("Usuario", "Usuario");
-            this.dgvMultas.Columns.Add("Multas", "Multas");
-            this.dgvMultas.Columns.Add("Pagadas", "Pagadas");
-            this.dgvMultas.Columns.Add("Fecha", "Fecha");
-
+            Column1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            label1 = new Label();
+            textBox1 = new TextBox();
+            label2 = new Label();
+            ((System.ComponentModel.ISupportInitialize)dgvMultas).BeginInit();
+            SuspendLayout();
+            // 
+            // txtBuscar
+            // 
+            txtBuscar.Location = new Point(178, 41);
+            txtBuscar.Margin = new Padding(3, 4, 3, 4);
+            txtBuscar.Name = "txtBuscar";
+            txtBuscar.Size = new Size(470, 27);
+            txtBuscar.TabIndex = 0;
+            // 
+            // btnBuscar
+            // 
+            btnBuscar.Location = new Point(686, 37);
+            btnBuscar.Margin = new Padding(3, 4, 3, 4);
+            btnBuscar.Name = "btnBuscar";
+            btnBuscar.Size = new Size(114, 35);
+            btnBuscar.TabIndex = 1;
+            btnBuscar.Text = "Buscar";
+            btnBuscar.Click += btnBuscar_Click;
+            // 
+            // dgvMultas
+            // 
+            dgvMultas.AllowUserToAddRows = false;
+            dgvMultas.ColumnHeadersHeight = 29;
+            dgvMultas.Columns.AddRange(new DataGridViewColumn[] { Column1, dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5 });
+            dgvMultas.Location = new Point(34, 100);
+            dgvMultas.Margin = new Padding(3, 4, 3, 4);
+            dgvMultas.Name = "dgvMultas";
+            dgvMultas.RowHeadersWidth = 51;
+            dgvMultas.Size = new Size(773, 347);
+            dgvMultas.TabIndex = 2;
+            // 
+            // btnMarcarPagada
+            // 
+            this.btnMarcarPagada.Location = new Point(322, 483);
+            this.btnMarcarPagada.Margin = new Padding(3, 4, 3, 4);
             this.btnMarcarPagada.Name = "btnMarcarPagada";
+            this.btnMarcarPagada.Size = new Size(206, 45);
+            this.btnMarcarPagada.TabIndex = 3;
             this.btnMarcarPagada.Text = "Marcar como pagada";
-            this.btnMarcarPagada.Location = new Point(30, 360);
-            this.btnMarcarPagada.Size = new Size(180, 34);
-            Estilos.AplicarBotonAccion(this.btnMarcarPagada);
-            this.btnMarcarPagada.Click += new System.EventHandler(this.btnMarcarPagada_Click);
-
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.Location = new Point(300, 360);
-            this.btnEliminar.Size = new Size(120, 34);
-            Estilos.AplicarBotonAccion(this.btnEliminar);
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-
+            this.btnMarcarPagada.Click += this.btnMarcarPagada_Click;
+            // 
+            // btnCerrar
+            // 
+            this.btnCerrar.Location = new Point(670, 483);
+            this.btnCerrar.Margin = new Padding(3, 4, 3, 4);
             this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new Size(137, 45);
+            this.btnCerrar.TabIndex = 5;
             this.btnCerrar.Text = "Cerrar";
-            this.btnCerrar.Location = new Point(500, 360);
-            this.btnCerrar.Size = new Size(120, 34);
-            Estilos.AplicarBotonAccion(this.btnCerrar);
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
-
+            this.btnCerrar.Click += this.btnCerrar_Click;
+            // 
+            // Column1
+            // 
+            Column1.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            Column1.HeaderText = "ID Multa";
+            Column1.MinimumWidth = 6;
+            Column1.Name = "Column1";
+            Column1.Width = 95;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.HeaderText = "ID Prestamo";
+            dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.HeaderText = "Lector";
+            dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.HeaderText = "Monto (C$)";
+            dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewTextBoxColumn4.HeaderText = "Estado";
+            dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewTextBoxColumn5.HeaderText = "Fecha Generación";
+            dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            dataGridViewTextBoxColumn5.Width = 125;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(34, 489);
+            label1.Name = "label1";
+            label1.Size = new Size(69, 20);
+            label1.TabIndex = 6;
+            label1.Text = "ID Multa:";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(121, 489);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
+            textBox1.Size = new Size(163, 34);
+            textBox1.TabIndex = 7;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(34, 44);
+            label2.Name = "label2";
+            label2.Size = new Size(122, 20);
+            label2.TabIndex = 8;
+            label2.Text = "Lector / Id Multa:";
+            // 
             // frmGestionMultas
-            this.AutoScaleDimensions = new SizeF(7F, 15F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(730, 430);
-            this.BackColor = Estilos.FondoFormulario;
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.Name = "frmGestionMultas";
-            this.Text = "Gestion de Multas";
-
-            this.Controls.Add(this.txtBuscar);
-            this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.dgvMultas);
-            this.Controls.Add(this.btnMarcarPagada);
-            this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnCerrar);
-
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMultas)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(213, 234, 248);
+            ClientSize = new Size(834, 573);
+            Controls.Add(label2);
+            Controls.Add(textBox1);
+            Controls.Add(label1);
+            Controls.Add(txtBuscar);
+            Controls.Add(btnBuscar);
+            Controls.Add(dgvMultas);
+            Controls.Add(this.btnMarcarPagada);
+            Controls.Add(this.btnCerrar);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "frmGestionMultas";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Gestion de Multas";
+            ((System.ComponentModel.ISupportInitialize)dgvMultas).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private Label label1;
+        private TextBox textBox1;
+        private Label label2;
     }
 }
