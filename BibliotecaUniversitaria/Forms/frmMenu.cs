@@ -24,7 +24,7 @@ namespace BibliotecaUniversitaria.Forms
 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
-            using var frm = new frmRegistroUsuario();
+            using var frm = new frmRegistroLector();
             frm.ShowDialog();
         }
 

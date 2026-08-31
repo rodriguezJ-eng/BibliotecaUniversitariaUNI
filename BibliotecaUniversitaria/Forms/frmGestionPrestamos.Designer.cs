@@ -30,11 +30,11 @@ namespace BibliotecaUniversitaria.Forms
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGestionPrestamos));
             grbRegistroPrestamos = new GroupBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
-            dateTimePicker2 = new DateTimePicker();
+            txtDiasCredito = new TextBox();
+            txtIdLector = new TextBox();
+            dtpFechaDevolucion = new DateTimePicker();
             button1 = new Button();
-            dateTimePicker1 = new DateTimePicker();
+            dtpFechaPrestamo = new DateTimePicker();
             lblUsuarios = new Label();
             lblEjemplar = new Label();
             lblFechaPrestamo = new Label();
@@ -53,7 +53,7 @@ namespace BibliotecaUniversitaria.Forms
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
-            textBox3 = new TextBox();
+            cmbEjemplar = new ComboBox();
             grbRegistroPrestamos.SuspendLayout();
             grbPrestamo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPrestamos).BeginInit();
@@ -61,12 +61,12 @@ namespace BibliotecaUniversitaria.Forms
             // 
             // grbRegistroPrestamos
             // 
-            grbRegistroPrestamos.Controls.Add(textBox3);
-            grbRegistroPrestamos.Controls.Add(textBox2);
-            grbRegistroPrestamos.Controls.Add(textBox1);
-            grbRegistroPrestamos.Controls.Add(dateTimePicker2);
+            grbRegistroPrestamos.Controls.Add(cmbEjemplar);
+            grbRegistroPrestamos.Controls.Add(txtDiasCredito);
+            grbRegistroPrestamos.Controls.Add(txtIdLector);
+            grbRegistroPrestamos.Controls.Add(dtpFechaDevolucion);
             grbRegistroPrestamos.Controls.Add(button1);
-            grbRegistroPrestamos.Controls.Add(dateTimePicker1);
+            grbRegistroPrestamos.Controls.Add(dtpFechaPrestamo);
             grbRegistroPrestamos.Controls.Add(lblUsuarios);
             grbRegistroPrestamos.Controls.Add(lblEjemplar);
             grbRegistroPrestamos.Controls.Add(lblFechaPrestamo);
@@ -83,27 +83,27 @@ namespace BibliotecaUniversitaria.Forms
             grbRegistroPrestamos.TabStop = false;
             grbRegistroPrestamos.Text = "Registrar Prestamos";
             // 
-            // textBox2
+            // txtDiasCredito
             // 
-            textBox2.Location = new Point(127, 113);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(238, 30);
-            textBox2.TabIndex = 15;
+            txtDiasCredito.Location = new Point(611, 94);
+            txtDiasCredito.Name = "txtDiasCredito";
+            txtDiasCredito.Size = new Size(221, 30);
+            txtDiasCredito.TabIndex = 16;
             // 
-            // textBox1
+            // txtIdLector
             // 
-            textBox1.Location = new Point(111, 39);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(254, 30);
-            textBox1.TabIndex = 14;
+            txtIdLector.Location = new Point(111, 39);
+            txtIdLector.Name = "txtIdLector";
+            txtIdLector.Size = new Size(254, 30);
+            txtIdLector.TabIndex = 14;
             // 
-            // dateTimePicker2
+            // dtpFechaDevolucion
             // 
-            dateTimePicker2.Enabled = false;
-            dateTimePicker2.Location = new Point(601, 167);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(250, 30);
-            dateTimePicker2.TabIndex = 13;
+            dtpFechaDevolucion.Enabled = false;
+            dtpFechaDevolucion.Location = new Point(601, 167);
+            dtpFechaDevolucion.Name = "dtpFechaDevolucion";
+            dtpFechaDevolucion.Size = new Size(250, 30);
+            dtpFechaDevolucion.TabIndex = 13;
             // 
             // button1
             // 
@@ -115,12 +115,12 @@ namespace BibliotecaUniversitaria.Forms
             button1.TabIndex = 12;
             button1.UseVisualStyleBackColor = false;
             // 
-            // dateTimePicker1
+            // dtpFechaPrestamo
             // 
-            dateTimePicker1.Location = new Point(582, 39);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(250, 30);
-            dateTimePicker1.TabIndex = 4;
+            dtpFechaPrestamo.Location = new Point(582, 39);
+            dtpFechaPrestamo.Name = "dtpFechaPrestamo";
+            dtpFechaPrestamo.Size = new Size(250, 30);
+            dtpFechaPrestamo.TabIndex = 4;
             // 
             // lblUsuarios
             // 
@@ -287,12 +287,14 @@ namespace BibliotecaUniversitaria.Forms
             dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             dataGridViewTextBoxColumn5.Width = 125;
             // 
-            // textBox3
+            // cmbEjemplar
             // 
-            textBox3.Location = new Point(611, 94);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(221, 30);
-            textBox3.TabIndex = 16;
+            cmbEjemplar.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEjemplar.FormattingEnabled = true;
+            cmbEjemplar.Location = new Point(127, 120);
+            cmbEjemplar.Name = "cmbEjemplar";
+            cmbEjemplar.Size = new Size(238, 31);
+            cmbEjemplar.TabIndex = 2;
             // 
             // frmGestionPrestamos
             // 
@@ -320,10 +322,10 @@ namespace BibliotecaUniversitaria.Forms
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private Button button1;
-        private DateTimePicker dateTimePicker1;
-        private DateTimePicker dateTimePicker2;
-        private TextBox textBox2;
-        private TextBox textBox1;
-        private TextBox textBox3;
+        private DateTimePicker dtpFechaPrestamo;
+        private DateTimePicker dtpFechaDevolucion;
+        private TextBox txtIdLector;
+        private TextBox txtDiasCredito;
+        private ComboBox cmbEjemplar;
     }
 }

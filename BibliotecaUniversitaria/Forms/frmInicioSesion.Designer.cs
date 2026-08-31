@@ -44,9 +44,10 @@ namespace BibliotecaUniversitaria.Forms
             // label1
             // 
             label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(174, 198);
             label1.Name = "label1";
-            label1.Size = new Size(293, 20);
+            label1.Size = new Size(309, 20);
             label1.TabIndex = 0;
             label1.Text = "Sistema de Gestión Biblioteca Universitaria";
             // 
@@ -71,20 +72,22 @@ namespace BibliotecaUniversitaria.Forms
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(120, 261);
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(144, 261);
             label3.Name = "label3";
-            label3.Size = new Size(59, 20);
+            label3.Size = new Size(67, 20);
             label3.TabIndex = 3;
-            label3.Text = "Usuario";
+            label3.Text = "Usuario:";
             // 
             // label4
             // 
             label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.Location = new Point(120, 318);
             label4.Name = "label4";
-            label4.Size = new Size(83, 20);
+            label4.Size = new Size(92, 20);
             label4.TabIndex = 4;
-            label4.Text = "Contraseña";
+            label4.Text = "Contraseña:";
             // 
             // txtUsuario
             // 
@@ -105,6 +108,7 @@ namespace BibliotecaUniversitaria.Forms
             // btnIniciarSesion
             // 
             btnIniciarSesion.BackColor = Color.White;
+            btnIniciarSesion.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnIniciarSesion.Location = new Point(174, 377);
             btnIniciarSesion.Name = "btnIniciarSesion";
             btnIniciarSesion.Size = new Size(150, 32);
@@ -115,6 +119,7 @@ namespace BibliotecaUniversitaria.Forms
             // 
             // btnCancelar
             // 
+            btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCancelar.Location = new Point(341, 377);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(150, 32);

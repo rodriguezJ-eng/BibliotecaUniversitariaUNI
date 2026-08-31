@@ -25,8 +25,6 @@ namespace BibliotecaUniversitaria.Forms
             txtBuscar = new TextBox();
             btnBuscar = new Button();
             dgvMultas = new DataGridView();
-            this.btnMarcarPagada = new Button();
-            this.btnCerrar = new Button();
             Column1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
@@ -34,8 +32,9 @@ namespace BibliotecaUniversitaria.Forms
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
             label1 = new Label();
-            textBox1 = new TextBox();
+            txtIdMultaSeleccionada = new TextBox();
             label2 = new Label();
+            btnMarcarPagada = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvMultas).BeginInit();
             SuspendLayout();
             // 
@@ -68,26 +67,6 @@ namespace BibliotecaUniversitaria.Forms
             dgvMultas.RowHeadersWidth = 51;
             dgvMultas.Size = new Size(773, 347);
             dgvMultas.TabIndex = 2;
-            // 
-            // btnMarcarPagada
-            // 
-            this.btnMarcarPagada.Location = new Point(322, 483);
-            this.btnMarcarPagada.Margin = new Padding(3, 4, 3, 4);
-            this.btnMarcarPagada.Name = "btnMarcarPagada";
-            this.btnMarcarPagada.Size = new Size(206, 45);
-            this.btnMarcarPagada.TabIndex = 3;
-            this.btnMarcarPagada.Text = "Marcar como pagada";
-            this.btnMarcarPagada.Click += this.btnMarcarPagada_Click;
-            // 
-            // btnCerrar
-            // 
-            this.btnCerrar.Location = new Point(670, 483);
-            this.btnCerrar.Margin = new Padding(3, 4, 3, 4);
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new Size(137, 45);
-            this.btnCerrar.TabIndex = 5;
-            this.btnCerrar.Text = "Cerrar";
-            this.btnCerrar.Click += this.btnCerrar_Click;
             // 
             // Column1
             // 
@@ -141,14 +120,14 @@ namespace BibliotecaUniversitaria.Forms
             label1.TabIndex = 6;
             label1.Text = "ID Multa:";
             // 
-            // textBox1
+            // txtIdMultaSeleccionada
             // 
-            textBox1.Location = new Point(121, 489);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(163, 34);
-            textBox1.TabIndex = 7;
+            txtIdMultaSeleccionada.Location = new Point(121, 489);
+            txtIdMultaSeleccionada.Multiline = true;
+            txtIdMultaSeleccionada.Name = "txtIdMultaSeleccionada";
+            txtIdMultaSeleccionada.ReadOnly = true;
+            txtIdMultaSeleccionada.Size = new Size(163, 34);
+            txtIdMultaSeleccionada.TabIndex = 7;
             // 
             // label2
             // 
@@ -159,20 +138,29 @@ namespace BibliotecaUniversitaria.Forms
             label2.TabIndex = 8;
             label2.Text = "Lector / Id Multa:";
             // 
+            // btnMarcarPagada
+            // 
+            btnMarcarPagada.Location = new Point(335, 489);
+            btnMarcarPagada.Name = "btnMarcarPagada";
+            btnMarcarPagada.Size = new Size(221, 42);
+            btnMarcarPagada.TabIndex = 9;
+            btnMarcarPagada.Text = "Marcar como Pagada";
+            btnMarcarPagada.UseVisualStyleBackColor = true;
+            btnMarcarPagada.Click += btnMarcarPagada_Click_1;
+            // 
             // frmGestionMultas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(213, 234, 248);
             ClientSize = new Size(834, 573);
+            Controls.Add(btnMarcarPagada);
             Controls.Add(label2);
-            Controls.Add(textBox1);
+            Controls.Add(txtIdMultaSeleccionada);
             Controls.Add(label1);
             Controls.Add(txtBuscar);
             Controls.Add(btnBuscar);
             Controls.Add(dgvMultas);
-            Controls.Add(this.btnMarcarPagada);
-            Controls.Add(this.btnCerrar);
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmGestionMultas";
             StartPosition = FormStartPosition.CenterScreen;
@@ -188,7 +176,8 @@ namespace BibliotecaUniversitaria.Forms
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox txtIdMultaSeleccionada;
         private Label label2;
+        private Button btnMarcarPagada;
     }
 }

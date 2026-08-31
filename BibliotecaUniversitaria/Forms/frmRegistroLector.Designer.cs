@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace BibliotecaUniversitaria.Forms
 {
-    partial class frmRegistroUsuario
+    partial class frmRegistroLector
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -19,7 +19,7 @@ namespace BibliotecaUniversitaria.Forms
         private GroupBox grbDatosUsuario;
         private Label lblCedula, lblNombres, lblApellidos, lblTelefono;
         private Label lblCorreo, lblCarrera, lblTipo;
-        private TextBox txtCedula, txtNombres, txtApellidos, txtTelefono;
+        private TextBox txtIdLector, txtNombres, txtApellidos, txtTelefono;
         private TextBox txtCorreo, txtCarrera, txtTipo;
 
         private Button btnNuevo, btnGuardar, btnEditar, btnEliminar, btnCerrar;
@@ -31,7 +31,7 @@ namespace BibliotecaUniversitaria.Forms
         {
             grbDatosUsuario = new GroupBox();
             lblCedula = new Label();
-            txtCedula = new TextBox();
+            txtIdLector = new TextBox();
             lblNombres = new Label();
             txtNombres = new TextBox();
             lblApellidos = new Label();
@@ -66,7 +66,7 @@ namespace BibliotecaUniversitaria.Forms
             // grbDatosUsuario
             // 
             grbDatosUsuario.Controls.Add(lblCedula);
-            grbDatosUsuario.Controls.Add(txtCedula);
+            grbDatosUsuario.Controls.Add(txtIdLector);
             grbDatosUsuario.Controls.Add(lblNombres);
             grbDatosUsuario.Controls.Add(txtNombres);
             grbDatosUsuario.Controls.Add(lblApellidos);
@@ -80,14 +80,14 @@ namespace BibliotecaUniversitaria.Forms
             grbDatosUsuario.Controls.Add(lblTipo);
             grbDatosUsuario.Controls.Add(txtTipo);
             grbDatosUsuario.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            grbDatosUsuario.Location = new Point(23, 20);
+            grbDatosUsuario.Location = new Point(23, 13);
             grbDatosUsuario.Margin = new Padding(3, 4, 3, 4);
             grbDatosUsuario.Name = "grbDatosUsuario";
             grbDatosUsuario.Padding = new Padding(3, 4, 3, 4);
             grbDatosUsuario.Size = new Size(1006, 280);
             grbDatosUsuario.TabIndex = 0;
             grbDatosUsuario.TabStop = false;
-            grbDatosUsuario.Text = "Datos de usuario";
+            grbDatosUsuario.Text = "Datos del Lector";
             // 
             // lblCedula
             // 
@@ -98,13 +98,13 @@ namespace BibliotecaUniversitaria.Forms
             lblCedula.TabIndex = 0;
             lblCedula.Text = "Identificación";
             // 
-            // txtCedula
+            // txtIdLector
             // 
-            txtCedula.Location = new Point(149, 49);
-            txtCedula.Margin = new Padding(3, 4, 3, 4);
-            txtCedula.Name = "txtCedula";
-            txtCedula.Size = new Size(319, 30);
-            txtCedula.TabIndex = 1;
+            txtIdLector.Location = new Point(149, 49);
+            txtIdLector.Margin = new Padding(3, 4, 3, 4);
+            txtIdLector.Name = "txtIdLector";
+            txtIdLector.Size = new Size(319, 30);
+            txtIdLector.TabIndex = 1;
             // 
             // lblNombres
             // 
@@ -332,7 +332,7 @@ namespace BibliotecaUniversitaria.Forms
             dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             dataGridViewTextBoxColumn7.Width = 125;
             // 
-            // frmRegistroUsuario
+            // frmRegistroLector
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -346,9 +346,9 @@ namespace BibliotecaUniversitaria.Forms
             Controls.Add(btnCerrar);
             Controls.Add(grbUsuariosRegistrados);
             Margin = new Padding(3, 4, 3, 4);
-            Name = "frmRegistroUsuario";
+            Name = "frmRegistroLector";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Registro de usuarios";
+            Text = "Registro de Lectores";
             grbDatosUsuario.ResumeLayout(false);
             grbDatosUsuario.PerformLayout();
             grbUsuariosRegistrados.ResumeLayout(false);

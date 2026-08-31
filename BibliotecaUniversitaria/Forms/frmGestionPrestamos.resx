@@ -120,17 +120,20 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="button1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAHYYAAB2GAV2iE4EAAAGYSURBVFhH7dW5ilVBFIXhVoM2tVtozG0HHDKH51AMtDVt
-        0UDwHfQJFMfcMXVAfYdWn0E0cx4CRT7ZsC8Um8vh3KHB4PxJ3aq1ap3NLWrXwsLAQE+wjHO4its5xny5
-        eucKduEO/hhPrEdBK3XvzOAYPjQf+4oXuJ9jzEeE72jNmBrsx5cM/4h1LBbPIs6nHnzG3tYzFdiGtxn6
-        DrurpwWr6QteY2v1TATOZthfHKn6OPK4wh+cqfpE4HkGPahaF3iU+55WrTfYgl8ZdKLqXeBU7vsZOVXv
-        BXZmSHCg6l3gULN3uv6QDWfEwap3gcPN3h1V70U5gpNV72IuRxDgWQY9rFoXeJz7nlRtIrCWQXGtenU3
-        HG+u4emqT0Q0ErzJsGgwq9XTgj1N19yYuREF2JetNfiEC2Na8XZcbHzBvZnOvyX+frxvwr/hZT5Gr/C9
-        0X40v2/Ms4gV3MLv5gMtsX4zfdea9btzOYoRWMo34kq+/zHGfKnxxBXevCL6MBQx4n8qIm7EiOvVs+mM
-        KWK6V3IWsojLuFS1gYF/uU38QdeiqDwAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAd
+        hQAAHYUB8Bsy7AAAAZhJREFUWEft1bmKVUEUheFWgza1W2jMbQccMofnUAy0NW3RQPAd9AkUx9wxdUB9
+        h1afQTRzHgJFPtmwLxSby+HcocHg/EndqrVqnc0tatfCwsBAT7CMc7iK2znGfLl65wp24Q7+GE+sR0Er
+        de/M4Bg+NB/7ihe4n2PMR4TvaM2YGuzHlwz/iHUsFs8izqcefMbe1jMV2Ia3GfoOu6unBavpC15ja/VM
+        BM5m2F8cqfo48rjCH5yp+kTgeQY9qFoXeJT7nlatN9iCXxl0oupd4FTu+xk5Ve8FdmZIcKDqXeBQs3e6
+        /pANZ8TBqneBw83eHVXvRTmCk1XvYi5HEOBZBj2sWhd4nPueVG0isJZBca16dTccb67h6apPRDQSvMmw
+        aDCr1dOCPU3X3Ji5EQXYl601+IQLY1rxdlxsfMG9mc6/Jf5+vG/Cv+FlPkav8L3RfjS/b8yziBXcwu/m
+        Ay2xfjN915r1u3M5ihFYyjfiSr7/McZ8qfHEFd68IvowFDHifyoibsSI69Wz6YwpYrpXchayiMu4VLWB
+        gX+5TfxB16KoPAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="IDPrestamo.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="IDPrestamo.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
