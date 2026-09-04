@@ -8,31 +8,38 @@ namespace BibliotecaUniversitaria.Forms
     public partial class frmGestionMultas : Form
     {
         /// <summary>
-        /// Multas generadas. Static por la misma razón que Lectores en
-        /// frmRegistroLector y Prestamos en frmGestionPrestamos: debe poder
-        /// recibir multas generadas desde la ventana de Préstamos aunque esta
-        /// ventana de Multas no esté abierta en ese momento, y debe conservar
-        /// sus datos aunque se cierre y se vuelva a abrir.
+        /// Lista estática global de multas generadas desde la gestión de préstamos.
         /// </summary>
         public static List<Multa> Multas { get; } = new List<Multa>();
 
         private static int _siguienteIdMulta = 1;
 
-        /// <summary>Genera el próximo ID de multa. Lo usa frmGestionPrestamos al crear una multa.</summary>
+        /// <summary>
+        /// Genera el próximo ID incremental para una nueva multa.
+        /// </summary>
         public static int SiguienteIdMulta() => _siguienteIdMulta++;
 
         public frmGestionMultas()
         {
             InitializeComponent();
+
+            // Evento para capturar el ID cuando el usuario selecciona una fila en la tabla
             dgvMultas.SelectionChanged += DgvMultas_SelectionChanged;
+
+            // Cargar multas registradas al abrir la ventana
             CargarMultasEnGrid(Multas);
         }
 
         private void DgvMultas_SelectionChanged(object sender, EventArgs e)
         {
-            txtIdMultaSeleccionada.Text = dgvMultas.CurrentRow != null
-                ? dgvMultas.CurrentRow.Cells["Column1"].Value?.ToString()
-                : string.Empty;
+            if (dgvMultas.CurrentRow != null && dgvMultas.CurrentRow.Cells["Column1"].Value != null)
+            {
+                txtIdMultaSeleccionada.Text = dgvMultas.CurrentRow.Cells["Column1"].Value.ToString();
+            }
+            else
+            {
+                txtIdMultaSeleccionada.Clear();
+            }
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -49,26 +56,48 @@ namespace BibliotecaUniversitaria.Forms
             CargarMultasEnGrid(resultado);
         }
 
-        
+        private void btnMarcarPagada_Click_1(object sender, EventArgs e)
+        {
+            var multa = ObtenerMultaSeleccionada();
+            if (multa == null) return;
+
+            if (multa.Estado == "Pagada")
+            {
+                MessageBox.Show("Esta multa ya se encuentra registrada como pagada.", "Gestión de Multas",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            multa.Estado = "Pagada";
+
+            MessageBox.Show($"La multa #{multa.Id} ha sido marcada como PAGADA con éxito.", "Pago de Multa",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            CargarMultasEnGrid(Multas);
+        }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             var multa = ObtenerMultaSeleccionada();
             if (multa == null) return;
 
-            var respuesta = MessageBox.Show($"¿Eliminar la multa #{multa.Id}?",
+            var respuesta = MessageBox.Show($"¿Está seguro de eliminar la multa #{multa.Id} del sistema?",
                 "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
             if (respuesta != DialogResult.Yes) return;
 
             Multas.Remove(multa);
             CargarMultasEnGrid(Multas);
+
+            MessageBox.Show("Multa eliminada correctamente.", "Gestión de Multas",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private Multa ObtenerMultaSeleccionada()
         {
             if (dgvMultas.CurrentRow == null)
             {
-                MessageBox.Show("Seleccione una multa de la lista.", "Gestión de Multas",
+                MessageBox.Show("Seleccione una multa de la lista para continuar.", "Gestión de Multas",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return null;
             }
@@ -78,7 +107,7 @@ namespace BibliotecaUniversitaria.Forms
 
             if (multa == null)
             {
-                MessageBox.Show("No se encontró la multa seleccionada.", "Gestión de Multas",
+                MessageBox.Show("No se encontró el registro de la multa seleccionada.", "Gestión de Multas",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
@@ -104,22 +133,6 @@ namespace BibliotecaUniversitaria.Forms
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void btnMarcarPagada_Click_1(object sender, EventArgs e)
-        {
-            var multa = ObtenerMultaSeleccionada();
-            if (multa == null) return;
-
-            if (multa.Estado == "Pagada")
-            {
-                MessageBox.Show("Esta multa ya está pagada.", "Gestión de Multas",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            multa.Estado = "Pagada";
-            CargarMultasEnGrid(Multas);
         }
     }
 }
