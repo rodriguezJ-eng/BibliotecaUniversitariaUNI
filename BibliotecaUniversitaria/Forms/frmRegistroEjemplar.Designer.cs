@@ -20,7 +20,6 @@ namespace BibliotecaUniversitaria.Forms
         private Label lbllLibro;
         private ComboBox cmbLibro;
         private Label lblCodigo;
-        private ComboBox cmbCodigo;
         private Label lblEstado;
         private ComboBox cmbEstado;
 
@@ -35,7 +34,6 @@ namespace BibliotecaUniversitaria.Forms
             lbllLibro = new Label();
             cmbLibro = new ComboBox();
             lblCodigo = new Label();
-            cmbCodigo = new ComboBox();
             lblEstado = new Label();
             cmbEstado = new ComboBox();
             btnNuevo = new Button();
@@ -46,6 +44,7 @@ namespace BibliotecaUniversitaria.Forms
             dgvEjemplares = new DataGridView();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            txtCodigo = new TextBox();
             grpDatosEjemplar.SuspendLayout();
             grpEjemplaresDelLibro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvEjemplares).BeginInit();
@@ -53,10 +52,10 @@ namespace BibliotecaUniversitaria.Forms
             // 
             // grpDatosEjemplar
             // 
+            grpDatosEjemplar.Controls.Add(txtCodigo);
             grpDatosEjemplar.Controls.Add(lbllLibro);
             grpDatosEjemplar.Controls.Add(cmbLibro);
             grpDatosEjemplar.Controls.Add(lblCodigo);
-            grpDatosEjemplar.Controls.Add(cmbCodigo);
             grpDatosEjemplar.Controls.Add(lblEstado);
             grpDatosEjemplar.Controls.Add(cmbEstado);
             grpDatosEjemplar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -95,14 +94,6 @@ namespace BibliotecaUniversitaria.Forms
             lblCodigo.Size = new Size(73, 23);
             lblCodigo.TabIndex = 2;
             lblCodigo.Text = "Codigo:";
-            // 
-            // cmbCodigo
-            // 
-            cmbCodigo.Location = new Point(126, 116);
-            cmbCodigo.Margin = new Padding(3, 4, 3, 4);
-            cmbCodigo.Name = "cmbCodigo";
-            cmbCodigo.Size = new Size(285, 31);
-            cmbCodigo.TabIndex = 3;
             // 
             // lblEstado
             // 
@@ -201,6 +192,13 @@ namespace BibliotecaUniversitaria.Forms
             dataGridViewTextBoxColumn2.MinimumWidth = 6;
             dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             // 
+            // txtCodigo
+            // 
+            txtCodigo.Location = new Point(131, 117);
+            txtCodigo.Name = "txtCodigo";
+            txtCodigo.Size = new Size(264, 30);
+            txtCodigo.TabIndex = 6;
+            // 
             // frmRegistroEjemplar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -225,5 +223,6 @@ namespace BibliotecaUniversitaria.Forms
         }
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private TextBox txtCodigo;
     }
 }

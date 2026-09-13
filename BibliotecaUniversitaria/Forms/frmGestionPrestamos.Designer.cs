@@ -30,10 +30,11 @@ namespace BibliotecaUniversitaria.Forms
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGestionPrestamos));
             grbRegistroPrestamos = new GroupBox();
+            cmbEjemplar = new ComboBox();
             txtDiasCredito = new TextBox();
             txtIdLector = new TextBox();
             dtpFechaDevolucion = new DateTimePicker();
-            button1 = new Button();
+            btnBuscarLector = new Button();
             dtpFechaPrestamo = new DateTimePicker();
             lblUsuarios = new Label();
             lblEjemplar = new Label();
@@ -53,7 +54,6 @@ namespace BibliotecaUniversitaria.Forms
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
-            cmbEjemplar = new ComboBox();
             grbRegistroPrestamos.SuspendLayout();
             grbPrestamo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPrestamos).BeginInit();
@@ -65,7 +65,7 @@ namespace BibliotecaUniversitaria.Forms
             grbRegistroPrestamos.Controls.Add(txtDiasCredito);
             grbRegistroPrestamos.Controls.Add(txtIdLector);
             grbRegistroPrestamos.Controls.Add(dtpFechaDevolucion);
-            grbRegistroPrestamos.Controls.Add(button1);
+            grbRegistroPrestamos.Controls.Add(btnBuscarLector);
             grbRegistroPrestamos.Controls.Add(dtpFechaPrestamo);
             grbRegistroPrestamos.Controls.Add(lblUsuarios);
             grbRegistroPrestamos.Controls.Add(lblEjemplar);
@@ -82,6 +82,15 @@ namespace BibliotecaUniversitaria.Forms
             grbRegistroPrestamos.TabIndex = 0;
             grbRegistroPrestamos.TabStop = false;
             grbRegistroPrestamos.Text = "Registrar Prestamos";
+            // 
+            // cmbEjemplar
+            // 
+            cmbEjemplar.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEjemplar.FormattingEnabled = true;
+            cmbEjemplar.Location = new Point(127, 120);
+            cmbEjemplar.Name = "cmbEjemplar";
+            cmbEjemplar.Size = new Size(238, 31);
+            cmbEjemplar.TabIndex = 2;
             // 
             // txtDiasCredito
             // 
@@ -105,15 +114,16 @@ namespace BibliotecaUniversitaria.Forms
             dtpFechaDevolucion.Size = new Size(250, 30);
             dtpFechaDevolucion.TabIndex = 13;
             // 
-            // button1
+            // btnBuscarLector
             // 
-            button1.BackColor = Color.FromArgb(0, 192, 192);
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.Location = new Point(377, 33);
-            button1.Name = "button1";
-            button1.Size = new Size(48, 41);
-            button1.TabIndex = 12;
-            button1.UseVisualStyleBackColor = false;
+            btnBuscarLector.BackColor = Color.FromArgb(0, 192, 192);
+            btnBuscarLector.Image = (Image)resources.GetObject("btnBuscarLector.Image");
+            btnBuscarLector.Location = new Point(377, 33);
+            btnBuscarLector.Name = "btnBuscarLector";
+            btnBuscarLector.Size = new Size(48, 41);
+            btnBuscarLector.TabIndex = 12;
+            btnBuscarLector.UseVisualStyleBackColor = false;
+            btnBuscarLector.Click += btnBuscarLector_Click;
             // 
             // dtpFechaPrestamo
             // 
@@ -130,7 +140,6 @@ namespace BibliotecaUniversitaria.Forms
             lblUsuarios.Size = new Size(71, 23);
             lblUsuarios.TabIndex = 0;
             lblUsuarios.Text = "Lector: ";
-            lblUsuarios.Click += lblUsuarios_Click;
             // 
             // lblEjemplar
             // 
@@ -212,7 +221,6 @@ namespace BibliotecaUniversitaria.Forms
             lblPrestamos.Size = new Size(142, 23);
             lblPrestamos.TabIndex = 0;
             lblPrestamos.Text = "Buscar Préstamo";
-            lblPrestamos.Click += lblPrestamos_Click;
             // 
             // cmbPrestamos
             // 
@@ -287,15 +295,6 @@ namespace BibliotecaUniversitaria.Forms
             dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             dataGridViewTextBoxColumn5.Width = 125;
             // 
-            // cmbEjemplar
-            // 
-            cmbEjemplar.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbEjemplar.FormattingEnabled = true;
-            cmbEjemplar.Location = new Point(127, 120);
-            cmbEjemplar.Name = "cmbEjemplar";
-            cmbEjemplar.Size = new Size(238, 31);
-            cmbEjemplar.TabIndex = 2;
-            // 
             // frmGestionPrestamos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -321,7 +320,7 @@ namespace BibliotecaUniversitaria.Forms
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private Button button1;
+        private Button btnBuscarLector;
         private DateTimePicker dtpFechaPrestamo;
         private DateTimePicker dtpFechaDevolucion;
         private TextBox txtIdLector;

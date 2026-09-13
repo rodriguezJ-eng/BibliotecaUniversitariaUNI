@@ -32,13 +32,21 @@ namespace BibliotecaUniversitaria.Forms
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-           
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void txtContrasena_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnIniciarSesion.PerformClick();
+            }
         }
     }
 }

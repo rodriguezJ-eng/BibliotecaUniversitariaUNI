@@ -104,6 +104,7 @@ namespace BibliotecaUniversitaria.Forms
             txtContrasena.Name = "txtContrasena";
             txtContrasena.Size = new Size(250, 23);
             txtContrasena.TabIndex = 6;
+            txtContrasena.KeyPress += txtContrasena_KeyPress;
             // 
             // btnIniciarSesion
             // 

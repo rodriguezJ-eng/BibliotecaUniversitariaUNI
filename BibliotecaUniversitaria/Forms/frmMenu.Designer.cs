@@ -41,7 +41,7 @@ namespace BibliotecaUniversitaria.Forms
             btnLibros.BackColor = Color.WhiteSmoke;
             btnLibros.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnLibros.Image = (Image)resources.GetObject("btnLibros.Image");
-            btnLibros.Location = new Point(1, -2);
+            btnLibros.Location = new Point(2, -2);
             btnLibros.Name = "btnLibros";
             btnLibros.Size = new Size(118, 108);
             btnLibros.TabIndex = 0;
@@ -149,6 +149,7 @@ namespace BibliotecaUniversitaria.Forms
             Controls.Add(btnLibros);
             Name = "frmMenu";
             Text = "Sistema de Gestión Biblioteca Universitaria";
+            Load += frmMenu_Load;
             ResumeLayout(false);
         }
     }

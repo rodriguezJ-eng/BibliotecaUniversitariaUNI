@@ -30,13 +30,13 @@ namespace BibliotecaUniversitaria.Forms
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
-            cmbCodigo.Focus();
+            txtCodigo.Focus();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Libro libro = ObtenerLibroSeleccionado();
-            string codigo = cmbCodigo.Text.Trim();
+            string codigo = txtCodigo.Text.Trim();
 
             if (libro == null)
             {
@@ -57,7 +57,7 @@ namespace BibliotecaUniversitaria.Forms
             {
                 MessageBox.Show("Ya existe un ejemplar con ese código para este libro.", "Código duplicado",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cmbCodigo.Focus();
+                txtCodigo.Focus();
                 return;
             }
 
@@ -105,7 +105,7 @@ namespace BibliotecaUniversitaria.Forms
                 return;
             }
 
-            string nuevoCodigo = cmbCodigo.Text.Trim();
+            string nuevoCodigo = txtCodigo.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(nuevoCodigo) || cmbEstado.SelectedIndex == -1)
             {
@@ -120,7 +120,7 @@ namespace BibliotecaUniversitaria.Forms
             {
                 MessageBox.Show("Ya existe otro ejemplar con ese código para este libro.", "Código duplicado",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cmbCodigo.Focus();
+                txtCodigo.Focus();
                 return;
             }
 
@@ -181,8 +181,7 @@ namespace BibliotecaUniversitaria.Forms
                 cmbLibro.SelectedIndex = -1;
             }
 
-            cmbCodigo.SelectedIndex = -1;
-            cmbCodigo.Text = string.Empty;
+            txtCodigo.Text = string.Empty;
             cmbEstado.SelectedIndex = -1;
         }
 
@@ -217,7 +216,7 @@ namespace BibliotecaUniversitaria.Forms
         private void ActualizarGridEjemplares()
         {
             dgvEjemplares.Rows.Clear();
-            cmbCodigo.Items.Clear();
+            txtCodigo.Text = string.Empty;
 
             Libro libro = ObtenerLibroSeleccionado();
             if (libro == null)
@@ -230,7 +229,7 @@ namespace BibliotecaUniversitaria.Forms
             foreach (var ejemplar in ejemplaresDelLibro)
             {
                 dgvEjemplares.Rows.Add(ejemplar.Codigo, ejemplar.Estado);
-                cmbCodigo.Items.Add(ejemplar.Codigo);
+                txtCodigo.Text = ejemplar.Codigo;
             }
         }
     }

@@ -54,5 +54,10 @@ namespace BibliotecaUniversitaria.Forms
                 "préstamos, multas y reportes.",
                 "Ayuda", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void frmMenu_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

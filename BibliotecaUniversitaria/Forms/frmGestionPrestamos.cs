@@ -264,13 +264,5 @@ namespace BibliotecaUniversitaria.Forms
                     estadoMostrado);
             }
         }
-
-        private void lblUsuarios_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void lblPrestamos_Click(object sender, EventArgs e)
-        {
-        }
     }
 }

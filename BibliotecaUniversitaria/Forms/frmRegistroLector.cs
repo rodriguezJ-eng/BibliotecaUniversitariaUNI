@@ -15,7 +15,7 @@ namespace BibliotecaUniversitaria.Forms
         /// instancia (un "public List<Lector>" normal, sin static), cada
         /// "using var frm = new frmRegistroLector()" tendría su propia lista vacía y, al
         /// cerrar la ventana y perderse la referencia a esa instancia, esos datos se
-        /// perderían (ver explicación completa en el chat).
+        /// perderían
         /// </summary>
         public static List<Lector> Lectores { get; } = new List<Lector>();
 
