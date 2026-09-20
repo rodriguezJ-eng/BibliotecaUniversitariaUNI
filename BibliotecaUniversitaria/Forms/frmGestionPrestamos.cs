@@ -42,19 +42,12 @@ namespace BibliotecaUniversitaria.Forms
         {
             cmbEjemplar.Items.Clear();
 
-            // Filtramos ejemplares cuya condición sea "Disponible"
-            var ejemplaresDisponibles = frmRegistroEjemplar.Ejemplares
-                .Where(ej => ej.Estado == "Disponible")
-                .ToList();
+            var ejemplaresDisponibles = frmRegistroEjemplar.ObtenerEjemplaresDisponibles();
 
             foreach (var ej in ejemplaresDisponibles)
             {
-                // Buscamos el libro correspondiente para mostrar su título
-                var libro = frmRegistroLibro.Libros.FirstOrDefault(l => l.ISBN == ej.ISBNLibro);
-                string tituloLibro = libro != null ? libro.Titulo : "Libro Desconocido";
-
                 // Agregamos el formato: [Código Ejemplar] - Título Libro
-                cmbEjemplar.Items.Add($"{ej.Codigo} - {tituloLibro}");
+                cmbEjemplar.Items.Add($"{ej.Codigo} - {ej.TituloLibro}");
             }
         }
 
