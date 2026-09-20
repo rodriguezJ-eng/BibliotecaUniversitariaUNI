@@ -1,31 +1,32 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
+using BibliotecaUniversitaria.Datos;
+using Microsoft.Data.SqlClient;
 
 namespace BibliotecaUniversitaria.Forms
 {
     public partial class frmRegistroEjemplar : Form
     {
-        /// <summary>
-        /// Ejemplares registrados. Static por la misma razón que Lectores en
-        /// frmRegistroLector: debe sobrevivir a que esta ventana se cierre y se
-        /// vuelva a abrir con una instancia nueva desde frmMenu.
-        /// </summary>
-        public static List<Ejemplar> Ejemplares { get; } = new List<Ejemplar>();
+        private readonly EjemplarDatos _datosEjemplar = new EjemplarDatos();
 
         /// <summary>Libros disponibles en el mismo orden en que aparecen en cmbLibro.</summary>
         private List<Libro> _librosParaCombo = new List<Libro>();
+
+        /// <summary>IDEjemplar de la fila seleccionada en el grid (null = modo "nuevo").</summary>
+        private int? _idEjemplarSeleccionado = null;
 
         public frmRegistroEjemplar()
         {
             InitializeComponent();
 
-            cmbLibro.SelectedIndexChanged += cmbLibro_SelectedIndexChanged;
+            CargarLibrosParaCombo();
+            cmbFiltroEstado.SelectedIndex = 0; // "Todos"
 
-            CargarLibrosEnCombo();
-            ActualizarGridEjemplares();
+            ConsultarTodosYMostrar();
         }
+
+        // CRUD
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
@@ -33,6 +34,7 @@ namespace BibliotecaUniversitaria.Forms
             txtCodigo.Focus();
         }
 
+        /// <summary>Crear un nuevo ejemplar.</summary>
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Libro libro = ObtenerLibroSeleccionado();
@@ -52,34 +54,48 @@ namespace BibliotecaUniversitaria.Forms
                 return;
             }
 
-            if (Ejemplares.Any(ej => ej.ISBNLibro == libro.ISBN &&
-                                     ej.Codigo.Equals(codigo, StringComparison.OrdinalIgnoreCase)))
-            {
-                MessageBox.Show("Ya existe un ejemplar con ese código para este libro.", "Código duplicado",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtCodigo.Focus();
-                return;
-            }
-
             var ejemplar = new Ejemplar
             {
-                ISBNLibro = libro.ISBN,
+                IDLibro = libro.IDLibro,
                 Codigo = codigo,
                 Estado = cmbEstado.Text
             };
 
-            Ejemplares.Add(ejemplar);
-            ActualizarGridEjemplares();
+            try
+            {
+                _datosEjemplar.Insertar(ejemplar);
 
-            MessageBox.Show("El ejemplar se ha registrado exitosamente.", "Ejemplar Registrado",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("El ejemplar se ha registrado exitosamente.", "Ejemplar registrado",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            LimpiarCampos(mantenerLibroSeleccionado: true);
+                LimpiarCampos(mantenerLibroSeleccionado: true);
+                ConsultarTodosYMostrar();
+            }
+            catch (SqlException ex) when (ex.Number == 2627 || ex.Number == 2601)
+            {
+                MessageBox.Show("Ya existe un ejemplar con ese código.", "Código duplicado",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCodigo.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al registrar el ejemplar:\n" + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        /// <summary>Actualizar el ejemplar seleccionado en el grid.</summary>
         private void btnEditar_Click(object sender, EventArgs e)
         {
+            if (_idEjemplarSeleccionado == null)
+            {
+                MessageBox.Show("Selecciona en el listado el ejemplar que deseas editar.", "Selección vacía",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             Libro libro = ObtenerLibroSeleccionado();
+            string codigo = txtCodigo.Text.Trim();
 
             if (libro == null)
             {
@@ -88,91 +104,218 @@ namespace BibliotecaUniversitaria.Forms
                 return;
             }
 
-            if (dgvEjemplares.CurrentRow == null)
-            {
-                MessageBox.Show("Selecciona el ejemplar que deseas editar.", "Selección vacía",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            string codigoOriginal = Convert.ToString(dgvEjemplares.CurrentRow.Cells["dataGridViewTextBoxColumn1"].Value);
-            var ejemplar = Ejemplares.FirstOrDefault(ej => ej.ISBNLibro == libro.ISBN && ej.Codigo == codigoOriginal);
-
-            if (ejemplar == null)
-            {
-                MessageBox.Show("No se encontró el ejemplar seleccionado.", "Registro Ejemplar",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            string nuevoCodigo = txtCodigo.Text.Trim();
-
-            if (string.IsNullOrWhiteSpace(nuevoCodigo) || cmbEstado.SelectedIndex == -1)
+            if (string.IsNullOrWhiteSpace(codigo) || cmbEstado.SelectedIndex == -1)
             {
                 MessageBox.Show("Por favor, completa todos los campos.", "Campos vacíos",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!nuevoCodigo.Equals(codigoOriginal, StringComparison.OrdinalIgnoreCase) &&
-                Ejemplares.Any(ej => ej.ISBNLibro == libro.ISBN &&
-                                     ej.Codigo.Equals(nuevoCodigo, StringComparison.OrdinalIgnoreCase)))
+            var ejemplar = new Ejemplar
             {
-                MessageBox.Show("Ya existe otro ejemplar con ese código para este libro.", "Código duplicado",
+                IDEjemplar = _idEjemplarSeleccionado.Value,
+                IDLibro = libro.IDLibro,
+                Codigo = codigo,
+                Estado = cmbEstado.Text
+            };
+
+            try
+            {
+                _datosEjemplar.Actualizar(ejemplar);
+
+                MessageBox.Show("El ejemplar se ha actualizado exitosamente.", "Ejemplar actualizado",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                LimpiarCampos();
+                ConsultarTodosYMostrar();
+            }
+            catch (SqlException ex) when (ex.Number == 2627 || ex.Number == 2601)
+            {
+                MessageBox.Show("Ya existe otro ejemplar con ese código.", "Código duplicado",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtCodigo.Focus();
-                return;
             }
-
-            ejemplar.Codigo = nuevoCodigo;
-            ejemplar.Estado = cmbEstado.Text;
-
-            ActualizarGridEjemplares();
-
-            MessageBox.Show("El ejemplar se ha actualizado exitosamente.", "Ejemplar Actualizado",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            LimpiarCampos(mantenerLibroSeleccionado: true);
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al actualizar el ejemplar:\n" + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        /// <summary>Eliminar el ejemplar seleccionado en el grid.</summary>
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            Libro libro = ObtenerLibroSeleccionado();
-
-            if (libro == null || dgvEjemplares.Rows.Count == 0 || dgvEjemplares.SelectedRows.Count == 0)
+            if (_idEjemplarSeleccionado == null)
             {
-                MessageBox.Show("Por favor, selecciona el ejemplar que deseas eliminar.", "Selección vacía",
+                MessageBox.Show("Selecciona en el listado el ejemplar que deseas eliminar.", "Selección vacía",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            DataGridViewRow filaSeleccionada = dgvEjemplares.SelectedRows[0];
-            string codigo = Convert.ToString(filaSeleccionada.Cells["dataGridViewTextBoxColumn1"].Value);
 
             DialogResult resultado = MessageBox.Show("¿Estás seguro de eliminar este ejemplar?", "Confirmar eliminación",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (resultado == DialogResult.Yes)
+            if (resultado != DialogResult.Yes)
             {
-                var ejemplar = Ejemplares.FirstOrDefault(ej => ej.ISBNLibro == libro.ISBN && ej.Codigo == codigo);
-                if (ejemplar != null)
-                {
-                    Ejemplares.Remove(ejemplar);
-                }
+                return;
+            }
 
-                ActualizarGridEjemplares();
+            try
+            {
+                _datosEjemplar.Eliminar(_idEjemplarSeleccionado.Value);
 
                 MessageBox.Show("Ejemplar eliminado correctamente.", "Eliminado",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                LimpiarCampos(mantenerLibroSeleccionado: true);
+                LimpiarCampos();
+                ConsultarTodosYMostrar();
+            }
+            catch (SqlException ex) when (ex.Number == 547)
+            {
+                // Violación de una restricción FOREIGN KEY (por ejemplo, el
+                // ejemplar tiene préstamos asociados).
+                MessageBox.Show(
+                    "No se puede eliminar este ejemplar porque tiene información relacionada " +
+                    "(por ejemplo, préstamos) en otra tabla.",
+                    "No se puede eliminar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al eliminar el ejemplar:\n" + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void cmbLibro_SelectedIndexChanged(object sender, EventArgs e)
+
+        // READ - Consultar / Filtros / Estadística
+
+
+        /// <summary>Consulta todos los ejemplares y los muestra en el grid.</summary>
+        private void ConsultarTodosYMostrar()
         {
-            ActualizarGridEjemplares();
+            try
+            {
+                List<Ejemplar> lista = _datosEjemplar.ConsultarTodos();
+                MostrarEnGrid(lista);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "No fue posible consultar los ejemplares en la base de datos:\n" + ex.Message,
+                    "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+        private void btnVerTodos_Click(object sender, EventArgs e)
+        {
+            cmbFiltroEstado.SelectedIndex = 0; // "Todos"
+            ConsultarTodosYMostrar();
+        }
+
+        /// <summary>Filtro 1: consulta los ejemplares por Estado.</summary>
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            string estado = cmbFiltroEstado.Text;
+
+            if (string.IsNullOrWhiteSpace(estado) || estado == "Todos")
+            {
+                ConsultarTodosYMostrar();
+                return;
+            }
+
+            try
+            {
+                List<Ejemplar> lista = _datosEjemplar.ConsultarPorEstado(estado);
+                MostrarEnGrid(lista);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al filtrar los ejemplares:\n" + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>Filtro 2: cuenta los ejemplares agrupados por Estado.</summary>
+        private void btnEstadisticas_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<(string Estado, int Cantidad)> estadisticas = _datosEjemplar.ConsultarEstadisticasPorEstado();
+
+                if (estadisticas.Count == 0)
+                {
+                    txtEstadisticas.Text = "No hay ejemplares registrados.";
+                    return;
+                }
+
+                var lineas = new List<string>();
+                foreach (var fila in estadisticas)
+                {
+                    lineas.Add($"{fila.Estado}: {fila.Cantidad}");
+                }
+
+                txtEstadisticas.Text = string.Join("   |   ", lineas);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al calcular las estadísticas:\n" + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Carga en el grid una lista de ejemplares ya consultada. El título
+        /// del libro no viene de la base de datos: se busca en la lista en
+        /// memoria _librosParaCombo (entidad auxiliar), igual que hace el
+        /// ComboBox.
+        /// </summary>
+        private void MostrarEnGrid(List<Ejemplar> lista)
+        {
+            dgvEjemplares.Rows.Clear();
+
+            foreach (Ejemplar ejemplar in lista)
+            {
+                string tituloLibro = ObtenerTituloLibro(ejemplar.IDLibro);
+
+                dgvEjemplares.Rows.Add(
+                    ejemplar.IDEjemplar,
+                    ejemplar.IDLibro,
+                    ejemplar.Codigo,
+                    ejemplar.Estado,
+                    tituloLibro);
+            }
+        }
+
+        /// <summary>Busca el título de un libro en la lista predeterminada en memoria, a partir de su IDLibro.</summary>
+        private string ObtenerTituloLibro(int idLibro)
+        {
+            Libro libro = _librosParaCombo.Find(l => l.IDLibro == idLibro);
+            return libro != null ? libro.Titulo : "(libro no encontrado)";
+        }
+
+        /// <summary>Al seleccionar una fila del grid, se cargan sus datos en los controles para editar o eliminar.</summary>
+        private void dgvEjemplares_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+
+            DataGridViewRow fila = dgvEjemplares.Rows[e.RowIndex];
+
+            _idEjemplarSeleccionado = Convert.ToInt32(fila.Cells["colIDEjemplar"].Value);
+            int idLibro = Convert.ToInt32(fila.Cells["colIDLibro"].Value);
+            string codigo = Convert.ToString(fila.Cells["colCodigo"].Value);
+            string estado = Convert.ToString(fila.Cells["colEstado"].Value);
+
+            int indiceLibro = _librosParaCombo.FindIndex(l => l.IDLibro == idLibro);
+            cmbLibro.SelectedIndex = indiceLibro;
+
+            txtCodigo.Text = codigo;
+            cmbEstado.SelectedItem = estado;
+        }
+
+        // Auxiliares
 
         private void LimpiarCampos(bool mantenerLibroSeleccionado = false)
         {
@@ -183,23 +326,46 @@ namespace BibliotecaUniversitaria.Forms
 
             txtCodigo.Text = string.Empty;
             cmbEstado.SelectedIndex = -1;
+            _idEjemplarSeleccionado = null;
         }
 
-        /// <summary>Carga en cmbLibro los libros registrados en frmRegistroLibro (ISBN - Título).</summary>
-        private void CargarLibrosEnCombo()
+        /// <summary>
+        /// Carga en cmbLibro los libros existentes. Libro es una entidad
+        /// auxiliar (Ejemplar depende de ella mediante la clave foránea
+        /// IDLibro)
+        /// </summary>
+        private void CargarLibrosParaCombo()
         {
-            string seleccionActual = cmbLibro.Text;
-
-            _librosParaCombo = frmRegistroLibro.Libros.ToList();
+            _librosParaCombo = ObtenerLibrosPredeterminados();
 
             cmbLibro.Items.Clear();
-            foreach (var libro in _librosParaCombo)
+            foreach (Libro libro in _librosParaCombo)
             {
-                cmbLibro.Items.Add($"{libro.ISBN} - {libro.Titulo}");
+                cmbLibro.Items.Add($"{libro.IDLibro} - {libro.Titulo}");
             }
+        }
 
-            int indice = cmbLibro.Items.IndexOf(seleccionActual);
-            cmbLibro.SelectedIndex = indice;
+        /// <summary>
+        /// Lista predeterminada en memoria (entidad auxiliar Libro). Los
+        /// mismos IDLibro deben existir realmente en la tabla Libro de la
+        /// base de datos, ya que se usan como clave foránea al guardar un
+        /// Ejemplar.
+        /// </summary>
+        private static List<Libro> ObtenerLibrosPredeterminados()
+        {
+            return new List<Libro>
+            {
+                new Libro { IDLibro = 1, Titulo = "Matemáticas Aplicadas a la Ingeniería" },
+                new Libro { IDLibro = 2, Titulo = "El prodigio de los números : desafíos, paradojas y curiosidades matemáticas" },
+                new Libro { IDLibro = 3, Titulo = "Matemática básica" },
+                new Libro { IDLibro = 4, Titulo = "Matemáticas aplicadas : para administración, economía y ciencias sociales" },
+                new Libro { IDLibro = 5, Titulo = "Fundamentos de programación : algoritmos y estructuras de datos" },
+                new Libro { IDLibro = 6, Titulo = "Introducción a la programación estructurada en C" },
+                new Libro { IDLibro = 7, Titulo = "Metodología y tecnología de la programación" },
+                new Libro { IDLibro = 8, Titulo = "Mecánica para ingeniería: dinámica" },
+                new Libro { IDLibro = 9, Titulo = "Mecánica de fluidos para ingenieros" },
+                new Libro { IDLibro = 10, Titulo = "Redes de Computadoras" },
+            };
         }
 
         private Libro ObtenerLibroSeleccionado()
@@ -212,24 +378,29 @@ namespace BibliotecaUniversitaria.Forms
             return _librosParaCombo[cmbLibro.SelectedIndex];
         }
 
-        /// <summary>Muestra en dgvEjemplares solo los ejemplares del libro seleccionado en cmbLibro.</summary>
-        private void ActualizarGridEjemplares()
+        /// <summary>
+        /// Punto de acceso para otras pantallas del proyecto (por ejemplo,
+        /// frmGestionPrestamos) que antes leían la lista estática en memoria
+        /// "Ejemplares".
+        /// </summary>
+        public static List<Ejemplar> ObtenerEjemplaresDisponibles()
         {
-            dgvEjemplares.Rows.Clear();
-            txtCodigo.Text = string.Empty;
-
-            Libro libro = ObtenerLibroSeleccionado();
-            if (libro == null)
+            try
             {
-                return;
+                List<Ejemplar> disponibles = new EjemplarDatos().ConsultarPorEstado("Disponible");
+                List<Libro> libros = ObtenerLibrosPredeterminados();
+
+                foreach (Ejemplar ejemplar in disponibles)
+                {
+                    Libro libro = libros.Find(l => l.IDLibro == ejemplar.IDLibro);
+                    ejemplar.TituloLibro = libro != null ? libro.Titulo : "(libro no encontrado)";
+                }
+
+                return disponibles;
             }
-
-            var ejemplaresDelLibro = Ejemplares.Where(ej => ej.ISBNLibro == libro.ISBN).ToList();
-
-            foreach (var ejemplar in ejemplaresDelLibro)
+            catch (Exception)
             {
-                dgvEjemplares.Rows.Add(ejemplar.Codigo, ejemplar.Estado);
-                txtCodigo.Text = ejemplar.Codigo;
+                return new List<Ejemplar>();
             }
         }
     }

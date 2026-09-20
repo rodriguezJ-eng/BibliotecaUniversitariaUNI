@@ -31,6 +31,8 @@ namespace BibliotecaUniversitaria.Forms
         private void InitializeComponent()
         {
             grpDatosEjemplar = new GroupBox();
+            groupBox1 = new GroupBox();
+            txtCodigo = new TextBox();
             lbllLibro = new Label();
             cmbLibro = new ComboBox();
             lblCodigo = new Label();
@@ -42,16 +44,27 @@ namespace BibliotecaUniversitaria.Forms
             btnEliminar = new Button();
             grpEjemplaresDelLibro = new GroupBox();
             dgvEjemplares = new DataGridView();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            txtCodigo = new TextBox();
+            groupBox2 = new GroupBox();
+            txtEstadisticas = new TextBox();
+            btnEstadisticas = new Button();
+            btnVerTodos = new Button();
+            btnFiltrar = new Button();
+            cmbFiltroEstado = new ComboBox();
+            label1 = new Label();
+            colIDEjemplar = new DataGridViewTextBoxColumn();
+            colIDLibro = new DataGridViewTextBoxColumn();
+            colCodigo = new DataGridViewTextBoxColumn();
+            colEstado = new DataGridViewTextBoxColumn();
+            colLibro = new DataGridViewTextBoxColumn();
             grpDatosEjemplar.SuspendLayout();
             grpEjemplaresDelLibro.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvEjemplares).BeginInit();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // grpDatosEjemplar
             // 
+            grpDatosEjemplar.Controls.Add(groupBox1);
             grpDatosEjemplar.Controls.Add(txtCodigo);
             grpDatosEjemplar.Controls.Add(lbllLibro);
             grpDatosEjemplar.Controls.Add(cmbLibro);
@@ -67,6 +80,22 @@ namespace BibliotecaUniversitaria.Forms
             grpDatosEjemplar.TabIndex = 0;
             grpDatosEjemplar.TabStop = false;
             grpDatosEjemplar.Text = "Datos del ejemplar";
+            // 
+            // groupBox1
+            // 
+            groupBox1.Location = new Point(25, 266);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(525, 108);
+            groupBox1.TabIndex = 6;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "groupBox1";
+            // 
+            // txtCodigo
+            // 
+            txtCodigo.Location = new Point(131, 117);
+            txtCodigo.Name = "txtCodigo";
+            txtCodigo.Size = new Size(264, 30);
+            txtCodigo.TabIndex = 6;
             // 
             // lbllLibro
             // 
@@ -158,53 +187,157 @@ namespace BibliotecaUniversitaria.Forms
             // 
             grpEjemplaresDelLibro.Controls.Add(dgvEjemplares);
             grpEjemplaresDelLibro.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            grpEjemplaresDelLibro.Location = new Point(23, 307);
+            grpEjemplaresDelLibro.Location = new Point(23, 465);
             grpEjemplaresDelLibro.Margin = new Padding(3, 4, 3, 4);
             grpEjemplaresDelLibro.Name = "grpEjemplaresDelLibro";
             grpEjemplaresDelLibro.Padding = new Padding(3, 4, 3, 4);
-            grpEjemplaresDelLibro.Size = new Size(800, 347);
+            grpEjemplaresDelLibro.Size = new Size(800, 343);
             grpEjemplaresDelLibro.TabIndex = 5;
             grpEjemplaresDelLibro.TabStop = false;
-            grpEjemplaresDelLibro.Text = "Ejemplares del Libro";
+            grpEjemplaresDelLibro.Text = "Listado de ejemplares";
             // 
             // dgvEjemplares
             // 
+            dgvEjemplares.AllowUserToAddRows = false;
+            dgvEjemplares.AllowUserToDeleteRows = false;
             dgvEjemplares.ColumnHeadersHeight = 29;
-            dgvEjemplares.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2 });
-            dgvEjemplares.Location = new Point(23, 40);
+            dgvEjemplares.Columns.AddRange(new DataGridViewColumn[] { colIDEjemplar, colIDLibro, colCodigo, colEstado, colLibro });
+            dgvEjemplares.Location = new Point(25, 31);
             dgvEjemplares.Margin = new Padding(3, 4, 3, 4);
             dgvEjemplares.Name = "dgvEjemplares";
+            dgvEjemplares.ReadOnly = true;
             dgvEjemplares.RowHeadersWidth = 51;
-            dgvEjemplares.Size = new Size(754, 267);
+            dgvEjemplares.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvEjemplares.Size = new Size(750, 270);
             dgvEjemplares.TabIndex = 0;
             // 
-            // dataGridViewTextBoxColumn1
+            // groupBox2
             // 
-            dataGridViewTextBoxColumn1.HeaderText = "Código";
-            dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.Width = 200;
+            groupBox2.Controls.Add(txtEstadisticas);
+            groupBox2.Controls.Add(btnEstadisticas);
+            groupBox2.Controls.Add(btnVerTodos);
+            groupBox2.Controls.Add(btnFiltrar);
+            groupBox2.Controls.Add(cmbFiltroEstado);
+            groupBox2.Controls.Add(label1);
+            groupBox2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            groupBox2.Location = new Point(23, 302);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(800, 156);
+            groupBox2.TabIndex = 6;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Filtro y Consultas";
             // 
-            // dataGridViewTextBoxColumn2
+            // txtEstadisticas
             // 
-            dataGridViewTextBoxColumn2.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewTextBoxColumn2.HeaderText = "Estado";
-            dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            txtEstadisticas.BackColor = SystemColors.Control;
+            txtEstadisticas.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtEstadisticas.ForeColor = SystemColors.WindowText;
+            txtEstadisticas.Location = new Point(20, 88);
+            txtEstadisticas.Multiline = true;
+            txtEstadisticas.Name = "txtEstadisticas";
+            txtEstadisticas.ReadOnly = true;
+            txtEstadisticas.ScrollBars = ScrollBars.Vertical;
+            txtEstadisticas.Size = new Size(760, 48);
+            txtEstadisticas.TabIndex = 5;
             // 
-            // txtCodigo
+            // btnEstadisticas
             // 
-            txtCodigo.Location = new Point(131, 117);
-            txtCodigo.Name = "txtCodigo";
-            txtCodigo.Size = new Size(264, 30);
-            txtCodigo.TabIndex = 6;
+            btnEstadisticas.BackColor = Color.FromArgb(213, 234, 248);
+            btnEstadisticas.Location = new Point(600, 40);
+            btnEstadisticas.Name = "btnEstadisticas";
+            btnEstadisticas.Size = new Size(175, 38);
+            btnEstadisticas.TabIndex = 9;
+            btnEstadisticas.Text = "Ver estadísticas";
+            btnEstadisticas.UseVisualStyleBackColor = false;
+            // 
+            // btnVerTodos
+            // 
+            btnVerTodos.BackColor = Color.FromArgb(213, 234, 248);
+            btnVerTodos.Location = new Point(483, 40);
+            btnVerTodos.Name = "btnVerTodos";
+            btnVerTodos.Size = new Size(110, 38);
+            btnVerTodos.TabIndex = 8;
+            btnVerTodos.Text = "Ver todos";
+            btnVerTodos.UseVisualStyleBackColor = false;
+            // 
+            // btnFiltrar
+            // 
+            btnFiltrar.BackColor = Color.FromArgb(213, 234, 248);
+            btnFiltrar.Location = new Point(367, 40);
+            btnFiltrar.Name = "btnFiltrar";
+            btnFiltrar.Size = new Size(110, 38);
+            btnFiltrar.TabIndex = 7;
+            btnFiltrar.Text = "Filtrar";
+            btnFiltrar.UseVisualStyleBackColor = false;
+            // 
+            // cmbFiltroEstado
+            // 
+            cmbFiltroEstado.ItemHeight = 23;
+            cmbFiltroEstado.Items.AddRange(new object[] { "Todos", "Disponible", "Prestado", "En reparación", "Baja" });
+            cmbFiltroEstado.Location = new Point(170, 42);
+            cmbFiltroEstado.Margin = new Padding(3, 4, 3, 4);
+            cmbFiltroEstado.Name = "cmbFiltroEstado";
+            cmbFiltroEstado.Size = new Size(190, 31);
+            cmbFiltroEstado.TabIndex = 1;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(11, 45);
+            label1.Name = "label1";
+            label1.Size = new Size(160, 23);
+            label1.TabIndex = 0;
+            label1.Text = "Filtrar por estado: ";
+            // 
+            // colIDEjemplar
+            // 
+            colIDEjemplar.HeaderText = "IDEjemplar";
+            colIDEjemplar.MinimumWidth = 6;
+            colIDEjemplar.Name = "colIDEjemplar";
+            colIDEjemplar.ReadOnly = true;
+            colIDEjemplar.Visible = false;
+            colIDEjemplar.Width = 125;
+            // 
+            // colIDLibro
+            // 
+            colIDLibro.HeaderText = "IDLibro";
+            colIDLibro.MinimumWidth = 6;
+            colIDLibro.Name = "colIDLibro";
+            colIDLibro.ReadOnly = true;
+            colIDLibro.Visible = false;
+            colIDLibro.Width = 125;
+            // 
+            // colCodigo
+            // 
+            colCodigo.HeaderText = "Código";
+            colCodigo.MinimumWidth = 6;
+            colCodigo.Name = "colCodigo";
+            colCodigo.ReadOnly = true;
+            colCodigo.Width = 200;
+            // 
+            // colEstado
+            // 
+            colEstado.HeaderText = "Estado";
+            colEstado.MinimumWidth = 6;
+            colEstado.Name = "colEstado";
+            colEstado.ReadOnly = true;
+            colEstado.Width = 376;
+            // 
+            // colLibro
+            // 
+            colLibro.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colLibro.HeaderText = "Libro";
+            colLibro.MinimumWidth = 6;
+            colLibro.Name = "colLibro";
+            colLibro.ReadOnly = true;
             // 
             // frmRegistroEjemplar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(213, 234, 248);
-            ClientSize = new Size(846, 680);
+            ClientSize = new Size(846, 830);
+            Controls.Add(groupBox2);
             Controls.Add(grpDatosEjemplar);
             Controls.Add(btnNuevo);
             Controls.Add(btnGuardar);
@@ -219,10 +352,23 @@ namespace BibliotecaUniversitaria.Forms
             grpDatosEjemplar.PerformLayout();
             grpEjemplaresDelLibro.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvEjemplares).EndInit();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
             ResumeLayout(false);
         }
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private TextBox txtCodigo;
+        private GroupBox groupBox1;
+        private GroupBox groupBox2;
+        private Label label1;
+        private Button btnEstadisticas;
+        private Button btnVerTodos;
+        private Button btnFiltrar;
+        private TextBox txtEstadisticas;
+        private ComboBox cmbFiltroEstado;
+        private DataGridViewTextBoxColumn colIDEjemplar;
+        private DataGridViewTextBoxColumn colIDLibro;
+        private DataGridViewTextBoxColumn colCodigo;
+        private DataGridViewTextBoxColumn colEstado;
+        private DataGridViewTextBoxColumn colLibro;
     }
 }
