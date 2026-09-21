@@ -73,7 +73,7 @@ namespace BibliotecaUniversitaria.Forms
             btnUsuarios.Name = "btnUsuarios";
             btnUsuarios.Size = new Size(118, 108);
             btnUsuarios.TabIndex = 2;
-            btnUsuarios.Text = "Registro Usuarios";
+            btnUsuarios.Text = "Registro Lectores";
             btnUsuarios.TextImageRelation = TextImageRelation.ImageAboveText;
             btnUsuarios.UseVisualStyleBackColor = false;
             btnUsuarios.Click += btnUsuarios_Click;
