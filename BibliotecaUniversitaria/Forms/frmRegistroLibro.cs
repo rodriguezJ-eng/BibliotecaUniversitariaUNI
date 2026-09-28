@@ -92,7 +92,7 @@ namespace BibliotecaUniversitaria.Forms
             };
 
             Libros.Add(libro);
-            CargarLibrosEnGrid(Libros);
+            CargarLibrosEnGrid(Libros); 
 
             MessageBox.Show("El libro se ha registrado exitosamente.", "Libro Registrado",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
